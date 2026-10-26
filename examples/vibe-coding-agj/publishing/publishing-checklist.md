@@ -17,7 +17,7 @@
 | Facebook | 24 | 16 | 15 | 12 | 14 | 8 | 89 |
 
 ## Siap publish
-- [x] `mr.py publish-check` lulus
-- [ ] User sudah menyetujui paket (`mr.py approve <dir> publishing`)
+- [x] `scp.py check` (skill social-caption-publish) lulus
+- [ ] User sudah menyetujui paket (`scp.py approve <dir>`)
 - [ ] Video final, cover title, dan caption sudah dicocokkan
 - [ ] Jangan publish otomatis tanpa izin user
