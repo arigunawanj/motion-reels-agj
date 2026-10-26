@@ -1,0 +1,107 @@
+/* Motion Reels Engine — tema dasar (dark, neon lime + hot pink) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&display=block');
+
+:root {
+  --bg: #08080d;
+  --ink: #f5f5f7;
+  --muted: #8b8b9a;
+  --card: #15151f;
+  --line: rgba(255, 255, 255, 0.09);
+  --lime: #c6ff3d;
+  --pink: #ff3d7f;
+  --orange: #ff8a1f;
+  --red: #ff3b47;
+  --blue: #3da9ff;
+  --violet: #8b5cff;
+  --font: 'Inter Display', 'Inter', 'Poppins', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'DejaVu Sans Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #000; overflow: hidden; }
+body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+
+/* background grid + glow blobs (parallax) */
+#bg {
+  position: absolute; inset: -200px;
+  background-image:
+    linear-gradient(var(--line) 2px, transparent 2px),
+    linear-gradient(90deg, var(--line) 2px, transparent 2px);
+  background-size: 90px 90px;
+  opacity: 0.55;
+}
+.blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.35; }
+.blob.b1 { width: 800px; height: 800px; left: -100px; top: 150px; background: var(--violet); }
+.blob.b2 { width: 700px; height: 700px; left: 600px; top: 1100px; background: var(--pink); opacity: 0.22; }
+.blob.b3 { width: 600px; height: 600px; left: 300px; top: 1700px; background: var(--lime); opacity: 0.12; }
+
+#world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform, filter; }
+.scene { position: absolute; width: 1080px; height: 1920px; }
+
+/* efek layar */
+#fx { position: absolute; inset: 0; pointer-events: none; }
+.vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, transparent 45%, rgba(0,0,0,.65) 100%); }
+.grain {
+  position: absolute; inset: 0; opacity: 0.07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='256' height='256' filter='url(%23n)'/></svg>");
+}
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; mix-blend-mode: overlay; }
+
+/* captions — aman dari UI TikTok/Reels (kanan 150px, bawah 400px) */
+#caps { position: absolute; inset: 0; pointer-events: none; }
+.cap {
+  position: absolute; left: 470px; width: 820px; text-align: center;
+  font-weight: 900; font-size: 74px; line-height: 1.12; letter-spacing: -1.5px;
+  transform-origin: 50% 50%;
+}
+.cap .w {
+  display: inline-block; padding: 2px 14px; border-radius: 18px; color: #fff;
+  -webkit-text-stroke: 14px #000; paint-order: stroke fill;
+  text-shadow: 0 8px 0 rgba(0,0,0,.55);
+}
+.cap .w.next { opacity: 0.55; }
+.cap .w.em { color: var(--pink); }
+.cap .w.on { background: var(--lime); color: #0a0a0a; -webkit-text-stroke: 0; text-shadow: none; box-shadow: 0 10px 0 #000; }
+.cap .w.on.em { background: var(--pink); color: #fff; }
+
+/* HUD */
+#hud { position: absolute; inset: 0; pointer-events: none; }
+#hud .bar { position: absolute; left: 0; top: 0; width: 100%; height: 10px; background: rgba(255,255,255,.08); }
+#hud .bar i { display: block; height: 100%; background: var(--lime); transform-origin: 0 50%; }
+#hud .handle {
+  position: absolute; left: 60px; top: 230px; font: 700 34px var(--font); color: rgba(255,255,255,.55);
+  letter-spacing: -0.5px;
+}
+
+/* ---------- komponen siap pakai ---------- */
+.abs { position: absolute; }
+/* .center tidak pakai transform → aman dianimasikan dengan E.css/E.enter */
+.center { position: absolute; inset: 0; margin: auto; width: fit-content; height: fit-content; text-align: center; }
+.row { display: flex; align-items: center; justify-content: center; gap: 24px; }
+.card {
+  position: absolute; background: var(--card); border: 2px solid var(--line); border-radius: 44px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.5), inset 0 2px 0 rgba(255,255,255,.06);
+}
+.h-mega { font-weight: 900; font-size: 260px; line-height: .86; letter-spacing: -12px; }
+.h-xl { font-weight: 900; font-size: 150px; line-height: .9; letter-spacing: -6px; }
+.h-l { font-weight: 900; font-size: 100px; line-height: .95; letter-spacing: -3.5px; }
+.h-m { font-weight: 800; font-size: 64px; line-height: 1.05; letter-spacing: -2px; }
+.t-s { font-weight: 700; font-size: 40px; color: var(--muted); }
+.mono { font-family: var(--mono); }
+.lime { color: var(--lime); } .pink { color: var(--pink); } .red { color: var(--red); } .orange { color: var(--orange); }
+.pill {
+  display: inline-block; padding: 14px 32px; border-radius: 999px; font-weight: 900; font-size: 44px;
+  background: var(--lime); color: #0a0a0a;
+}
+.stroke { -webkit-text-stroke: 4px var(--ink); color: transparent; }
+.glow-lime { text-shadow: 0 0 40px rgba(198,255,61,.55); }
+.glow-pink { text-shadow: 0 0 40px rgba(255,61,127,.6); }
+.ch { display: inline-block; will-change: transform; }
+
+/* preview UI (tidak ikut ter-render) */
+#previewUI {
+  position: fixed; left: 0; right: 0; bottom: 0; height: 60px; display: flex; gap: 12px; align-items: center;
+  padding: 0 14px; background: #111; color: #ddd; font: 14px system-ui; z-index: 99;
+}
+#previewUI input { flex: 1; } #previewUI button { width: 44px; height: 36px; font-size: 16px; }

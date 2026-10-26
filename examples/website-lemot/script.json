@@ -1,0 +1,45 @@
+{
+  "title": "Website lemot = customer kabur",
+  "voice": "ari-santai",
+  "handle": "@agjlabs",
+  "fps": 60,
+  "wps": 2.7,
+  "sfxVolume": 0.55,
+  "bgm": null,
+  "bgmVolume": 0.16,
+  "scenes": [
+    {
+      "id": "hook",
+      "vo": "Website kamu loading *tiga* detik aja... lebih dari *setengah* pengunjung udah kabur."
+    },
+    {
+      "id": "chat",
+      "vo": "Rasanya tuh kayak chat gebetan. Udah centang dua, tapi nggak dibales-bales. *Ilfeel* kan? Customer kamu juga gitu."
+    },
+    {
+      "id": "tersangka",
+      "vo": "Biasanya pelakunya cuma *tiga*."
+    },
+    {
+      "id": "gambar",
+      "vo": "Satu, foto produk *delapan* mega langsung diupload. Itu kayak kirim *lemari* lewat ojol."
+    },
+    {
+      "id": "plugin",
+      "vo": "Dua, plugin numpuk. Persis kayak tab Chrome kamu yang nggak pernah *ditutup*."
+    },
+    {
+      "id": "hosting",
+      "vo": "Tiga, hosting murah yang dipakai rame-rame. Kayak *angkot* isi tiga puluh orang."
+    },
+    {
+      "id": "solusi",
+      "vo": "Solusinya: kompres gambar ke *WebP*, buang plugin yang nggak kepake, pasang *cache* sama CDN. Skor kamu bisa *naik* drastis."
+    },
+    {
+      "id": "cta",
+      "vo": "Penasaran website kamu sehat atau nggak? Komen *ROAST*, nanti tim AGJ Labs cek dan DM kamu."
+    }
+  ],
+  "maxDur": 60
+}

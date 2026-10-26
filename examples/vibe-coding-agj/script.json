@@ -1,0 +1,118 @@
+{
+  "title": "5 Tips Vibe Coding",
+  "voice": "suci",
+  "handle": "@agjlabs",
+  "fps": 60,
+  "maxDur": 58,
+  "wps": 2.6,
+  "sfxVolume": 0.22,
+  "bgm": null,
+  "bgmVolume": 0.16,
+  "scenes": [
+    {
+      "id": "hook",
+      "vo": "Pakai AI buat ngoding, tapi hasilnya malah *berantakan*?",
+      "goal": "Stop scroll: masalah yang relate",
+      "visual": "Editor kode yang barisnya rontok + badge error menghitung",
+      "camera": "snap zoom-out 1.6→1, punch-in + shake di 'berantakan'",
+      "type": "kata kunci: ERROR counter mono",
+      "transition": "-",
+      "sfx": "hit di 'berantakan'"
+    },
+    {
+      "id": "warung",
+      "vo": "Masalahnya bukan di AI. Prompt kamu kayak pesen ke abang warung: *makanan* satu. Ya bingung lah.",
+      "goal": "Analogi: perintah nggak jelas",
+      "visual": "Bubble prompt 'buatin aplikasi' → nota warung tercetak '1x MAKANAN ???' → tanda tanya bermunculan",
+      "camera": "pan dari bubble (atas) ke nota (bawah), tilt saat 'bingung'",
+      "type": "nota mono",
+      "transition": "whip",
+      "sfx": "pop di 'bingung'"
+    },
+    {
+      "id": "judul",
+      "vo": "Nih, *lima* tips vibe coding biar hasilnya rapi.",
+      "goal": "Janji isi",
+      "visual": "Angka 5 raksasa gradien + 5 kartu tips mengipas",
+      "camera": "zoom dip masuk, punch-in di 'lima'",
+      "type": "5 + VIBE CODING",
+      "transition": "zoom",
+      "sfx": "—"
+    },
+    {
+      "id": "konteks",
+      "vo": "Satu, kasih *konteks*. Sebut framework, fitur, sampai hasil akhirnya.",
+      "goal": "Tip 1",
+      "visual": "Kartu prompt 'buatin login' membesar; chip Laravel/Tailwind/validasi/→dashboard terbang masuk; meter kejelasan merah→hijau",
+      "camera": "pan ke meter di 'hasil'",
+      "type": "01 KONTEKS",
+      "transition": "whip",
+      "sfx": "ding pelan di 'hasil'"
+    },
+    {
+      "id": "kecil",
+      "vo": "Dua, pecah jadi langkah *kecil*. Satu prompt, satu tugas.",
+      "goal": "Tip 2",
+      "visual": "Balok raksasa 'APP KASIR' retak jadi 3 anak tangga tercentang",
+      "camera": "punch-in di 'kecil', push-in",
+      "type": "02 LANGKAH KECIL",
+      "transition": "whip",
+      "sfx": "—"
+    },
+    {
+      "id": "aturan",
+      "vo": "Tiga, bikin file *aturan* main. Biar AI nggak perlu diingetin terus.",
+      "goal": "Tip 3",
+      "visual": "Editor AGENTS.md mengetik aturan; bot AI memindai file; bubble 'inget ya…' berulang dicoret",
+      "camera": "pan dari editor ke bot",
+      "type": "03 ATURAN MAIN",
+      "transition": "whip",
+      "sfx": "—"
+    },
+    {
+      "id": "rencana",
+      "vo": "Empat, minta *rencananya* dulu. Kayak cek rute di Maps sebelum jalan.",
+      "goal": "Tip 4",
+      "visual": "Peta: rute merah salah dicoret, rute hijau tergambar ke pin tujuan",
+      "camera": "push-in + pan ikut rute",
+      "type": "04 RENCANA",
+      "transition": "whip",
+      "sfx": "ding pelan saat rute hijau sampai"
+    },
+    {
+      "id": "review",
+      "vo": "Lima, *review* dan test dulu, baru commit. AI itu partner, bukan *autopilot*.",
+      "goal": "Tip 5",
+      "visual": "Diff card + bar test 12/12; saklar AUTOPILOT dimatikan, PARTNER nyala",
+      "camera": "pan ke saklar, punch-in + shake di 'autopilot'",
+      "type": "05 REVIEW",
+      "transition": "whip",
+      "sfx": "hit di 'autopilot'"
+    },
+    {
+      "id": "jasa",
+      "vo": "Punya ide aplikasi tapi nggak sempat ngoding? Biar *AGJ Labs* yang bantu bikinin.",
+      "goal": "Soft selling",
+      "visual": "Bohlam ide menyala → 3 kartu layanan (Website & Web App, Aplikasi Mobile, AI & Otomasi) keluar dari bohlam",
+      "camera": "zoom dip masuk, pan turun ke kartu",
+      "type": "AGJ LABS",
+      "transition": "zoom",
+      "sfx": "pop pelan di 'AGJ'"
+    },
+    {
+      "id": "cta",
+      "vo": "Save dulu biar nggak lupa, terus follow *AGJ Labs* ya!",
+      "goal": "Satu aksi",
+      "visual": "Logo AGJ Labs, tombol Save ditap jadi hijau, pill Follow @agjlabs",
+      "camera": "push-in pelan",
+      "type": "logo + tombol",
+      "transition": "whip",
+      "sfx": "pop pelan saat tap"
+    }
+  ],
+  "tail": 0.45,
+  "ttsExtra": {
+    "instructions": "friendly, upbeat, casual young Indonesian tech creator, clear articulation, natural pace",
+    "seed": 7
+  }
+}

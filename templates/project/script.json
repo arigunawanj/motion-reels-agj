@@ -1,0 +1,36 @@
+{
+  "title": "Judul video",
+  "voice": "ari-santai",
+  "handle": "@agjlabs",
+  "fps": 60,
+  "maxDur": 60,
+  "wps": 2.6,
+  "sfxVolume": 0.22,
+  "bgm": null,
+  "bgmVolume": 0.16,
+  "scenes": [
+    {
+      "id": "hook",
+      "vo": "Kalimat hook maksimal tiga detik, langsung ke *masalah*.",
+      "goal": "Stop scroll: penonton merasa ini masalah mereka",
+      "visual": "Objek utama + angka besar",
+      "camera": "snap zoom-out dari detail, punch-in di kata 'masalah'",
+      "type": "1 kata kunci, Inter 900",
+      "transition": "-",
+      "sfx": "hit di 'masalah'"
+    },
+    {
+      "id": "cta",
+      "vo": "Komen *ROAST* kalau mau dicek gratis.",
+      "goal": "Satu aksi jelas",
+      "visual": "Kolom komentar mengetik ROAST",
+      "camera": "zoom dip masuk, push-in pelan",
+      "type": "pill CTA",
+      "transition": "zoom",
+      "sfx": "type + pop"
+    }
+  ],
+  "ttsExtra": {
+    "instructions": "friendly, upbeat, casual young Indonesian creator, clear articulation"
+  }
+}

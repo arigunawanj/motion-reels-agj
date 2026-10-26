@@ -1,0 +1,60 @@
+/* Tema default AGJ Labs — JANGAN diganti kecuali user minta "ganti desain".
+ * Warna dari logo, potongan logo pastel di background, transisi sapuan logo (lihat scenes.js). */
+:root {
+  --bg: #F6F8FD; --ink: #0F172A; --muted: #64748B; --card: #FFFFFF; --line: rgba(37,99,235,.10);
+  --blue: #2563EB; --blue2: #3B82F6; --green: #10B981; --amber: #F59E0B; --yellow: #FBBF24; --red: #EF4444; --navy: #0F172A;
+  --lime: #2563EB; --pink: #F59E0B;
+}
+body { color: var(--ink); }
+#stage { background: radial-gradient(ellipse at 50% 20%, #FFFFFF 0%, #F3F6FD 60%, #EAF0FC 100%); }
+#bg { background-image: radial-gradient(rgba(37,99,235,.16) 3px, transparent 3.5px); background-size: 54px 54px; opacity: 1; }
+/* blob → potongan logo AGJ (pastel), digerakkan engine (parallax) */
+.blob { filter: none; opacity: 1; border-radius: 0; }
+.blob.b1 { width: 330px; height: 1200px; left: 700px; top: 980px; border-radius: 170px; background: linear-gradient(180deg,#DCE7FF,#C9DAFF); transform-origin: 50% 50%; rotate: 33deg; opacity: .75; }
+.blob.b2 { width: 520px; height: 440px; left: -230px; top: 60px; background: #FEF1C7; clip-path: polygon(50% 0,100% 45%,82% 100%,18% 100%,0 45%); border-radius: 0; opacity: .9; }
+.blob.b3 { width: 620px; height: 330px; left: -200px; top: 1420px; background: #D5F5E8; clip-path: polygon(0 0,62% 0,100% 100%,38% 100%); opacity: .9; }
+.vignette { display: none; }
+.grain { opacity: .035; }
+#hud .bar { background: rgba(15,23,42,.06); }
+#hud .bar i { background: linear-gradient(90deg, #2563EB, #FBBF24, #10B981); }
+#hud .handle { display: none; }
+
+/* caption: navy tebal + halo putih, kata aktif pill biru, *kata* kuning */
+.cap { font-size: 70px; }
+.cap .w { color: var(--navy); -webkit-text-stroke: 14px #fff; text-shadow: 0 8px 18px rgba(15,23,42,.12); }
+.cap .w.next { opacity: .45; }
+.cap .w.em { color: #B45309; }
+.cap .w.on { background: var(--blue); color: #fff; -webkit-text-stroke: 0; box-shadow: 0 9px 0 #1E3A8A; text-shadow: none; }
+.cap .w.on.em { background: var(--yellow); color: var(--navy); box-shadow: 0 9px 0 #B45309; }
+
+.card { background: #fff; border: 3px solid #E3E9F6; border-radius: 40px;
+  box-shadow: 0 12px 0 #E3E9F6, 0 40px 80px -20px rgba(37,99,235,.25); }
+.mono { font-family: 'DejaVu Sans Mono', 'JetBrains Mono', monospace; }
+.blue { color: var(--blue); } .green { color: var(--green); } .amber { color: var(--amber); } .red { color: var(--red); } .muted { color: var(--muted); }
+.lbl { font: 800 30px var(--font); letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
+
+/* overlay transisi: potongan logo menyapu layar */
+#wipe { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+#wipe .wb { position: absolute; left: 380px; top: -500px; width: 420px; height: 2900px; border-radius: 210px; background: linear-gradient(180deg,#3B82F6,#1D4ED8); }
+#wipe .wy { position: absolute; left: 600px; top: 520px; width: 560px; height: 470px; background: #FBBF24; clip-path: polygon(50% 0,100% 45%,82% 100%,18% 100%,0 45%); }
+#wipe .wg { position: absolute; left: 330px; top: 1060px; width: 820px; height: 430px; background: #10B981; clip-path: polygon(0 0,62% 0,100% 100%,38% 100%); }
+/* tip header */
+.tiphead { position: absolute; left: 100px; top: 322px; display: flex; align-items: center; gap: 22px; }
+.tnum { font-size: 40px; font-weight: 700; color: #fff; background: var(--blue); padding: 6px 20px; border-radius: 16px; }
+.tdots { display: flex; gap: 10px; } .tdots i { width: 40px; height: 10px; border-radius: 6px; background: rgba(255,255,255,.14); display: block; }
+.tdots i.on { background: var(--green); }
+.tword { position: absolute; left: 96px; top: 394px; white-space: nowrap; font-size: 92px; }
+
+
+/* ---- komponen umum AGJ ---- */
+.card.dark { background: #0F172A; border-color: #1E293B; box-shadow: 0 14px 0 #CBD5E1, 0 40px 80px -20px rgba(15,23,42,.45); color: #E2E8F0; }
+.chip { position: absolute; padding: 16px 28px; border-radius: 20px; font: 700 36px var(--font); white-space: nowrap; color: var(--navy); }
+.btn3d { display: inline-flex; align-items: center; gap: 18px; padding: 26px 48px; border-radius: 36px; background: var(--blue); color: #fff; font: 900 54px var(--font); box-shadow: 0 12px 0 #1E3A8A; }
+.tnum { box-shadow: 0 6px 0 #1E3A8A; }
+.tdots i { background: rgba(15,23,42,.10); }
+.tword { text-shadow: 0 8px 0 rgba(15,23,42,.08); }
+.logo-card { position: absolute; left: 0; right: 0; margin: auto; width: 600px; padding: 40px 40px 34px; border-radius: 48px; background: #fff;
+  border: 3px solid #E3E9F6; box-shadow: 0 14px 0 #E3E9F6, 0 40px 80px -20px rgba(37,99,235,.3); }
+.logo-card img { width: 100%; display: block; }
+
+/* ===== style khusus video ini di bawah ===== */
