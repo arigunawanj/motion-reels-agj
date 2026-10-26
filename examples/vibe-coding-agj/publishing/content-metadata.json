@@ -1,4 +1,19 @@
 {
+  "brand": {
+    "name": "AGJ Labs",
+    "handle": "@agjlabs",
+    "branded_hashtags": [
+      "#agjlabs"
+    ],
+    "language": "id",
+    "region": "ID",
+    "persona": "santai Gen Z tapi profesional",
+    "banned_words": [
+      "termurah",
+      "dijamin"
+    ],
+    "selling_mode": "soft"
+  },
   "title": "5 Tips Vibe Coding",
   "video_file": "AGJ_5_Tips_Vibe_Coding_v5_9x16_60fps.mp4",
   "goal": "education + soft selling",

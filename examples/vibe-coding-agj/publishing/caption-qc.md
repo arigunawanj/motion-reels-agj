@@ -1,6 +1,6 @@
-# Caption QC — vibe-coding
+# Caption QC — vibe-coding-agj
 
-_2026-10-26T20:42:45_
+_2026-10-26T20:48:41_
 
 **LULUS** — 0 error, 0 warning
 

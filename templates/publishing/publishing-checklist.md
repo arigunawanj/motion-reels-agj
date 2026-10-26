@@ -6,7 +6,8 @@
 - [ ] Klaim faktual di caption sesuai sumber / isi video
 - [ ] Tidak ada keyword atau hashtag menyesatkan
 - [ ] Caption tidak bertentangan dengan isi video
-- [ ] Tidak ada engagement bait manipulatif ("wajib komen", "spam komen", dll.)
+- [ ] Tidak ada engagement bait manipulatif ("wajib komen", "tag 3 teman", "comment YES", dll.)
+- [ ] Tidak ada kata terlarang brand (`brand.banned_words`) dan gaya sesuai `brand.persona`
 - [ ] Caption tiap platform diadaptasi (tidak identik)
 
 ## Skor rubrik (internal, bukan skor algoritma / prediksi FYP) — revisi bila < 85

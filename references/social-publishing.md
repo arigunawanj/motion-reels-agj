@@ -2,11 +2,28 @@
 
 Berjalan **setelah QC video LULUS**, sebelum konten dinyatakan siap publish. Wajib menghasilkan caption khusus **TikTok, Instagram Reels, dan Facebook Reels**. Tidak mengganti workflow produksi video sebelumnya.
 
+**Netral brand & bahasa.** Modul ini tidak terikat ke brand tertentu. Identitas brand, bahasa, wilayah, dan gaya bicara diambil dari brief proyek dan dicatat di `content-metadata.json` → `brand`. Kalau brief tidak menyebutnya, tanyakan ke user (maks 1 pertanyaan) atau pakai default netral: bahasa sesuai VO, gaya natural kasual-profesional, tanpa branded hashtag.
+
 ```
 Video QC Passed → Content Analysis → Platform Research → Keyword Research → Caption Drafting
 → Hashtag Filtering → Caption QC → Publishing Package → User Approval → Ready to Publish
 ```
 CLI: `mr publish-init <dir>` → isi file → `mr publish-check <dir>` → tampilkan ke user → `mr approve <dir> publishing`.
+
+## 0. Brand profile (isi dulu)
+Catat di `content-metadata.json` → `brand`:
+| Field | Isi | Contoh |
+|---|---|---|
+| `name` | nama brand/kreator | "Kopi Senja", "Studio Rina" |
+| `handle` | akun yang dipakai di CTA | "@kopisenja" |
+| `branded_hashtags` | hashtag milik brand (boleh kosong) | ["#kopisenja"] |
+| `language` | bahasa caption (kode BCP-47) | "id", "en", "ms" |
+| `region` | wilayah target | "ID", "MY", "global" |
+| `persona` | gaya bicara | "santai Gen Z", "profesional ramah", "playful" |
+| `banned_words` | kata/klaim yang dilarang brand | ["termurah", "nomor 1"] |
+| `selling_mode` | none / soft / hard (dibatasi) | "soft" |
+
+Bahasa caption mengikuti `language`; hashtag dipilih untuk bahasa & wilayah tersebut.
 
 ## 1. Content understanding
 Baca dulu: `production/creative-brief.md`, `production/storyboard.md`, `script.json` (VO final = subtitle), judul, pesan utama, kesimpulan, target audiens, brand guideline, tujuan konten (awareness / education / engagement / conversion).
@@ -44,7 +61,7 @@ Periksa ulang sebelum integrasi API atau bila tanggal di atas sudah > 3 bulan.
 ## 4. Instagram Reels caption engine
 Struktur: **Hook → insight/penjelasan → nilai praktis → CTA natural (jika relevan) → hashtag.**
 - Maks 5 hashtag (Official Rule); tidak wajib penuh.
-- Kombinasi prioritas: keyword topik · niche spesifik · kategori konten · audiens/komunitas · branded hashtag (mis. #agjlabs) bila relevan.
+- Kombinasi prioritas: keyword topik · niche spesifik · kategori konten · audiens/komunitas · branded hashtag dari `brand.branded_hashtags` bila relevan.
 - Hindari #reels, #explore, #viral otomatis.
 
 ## 5. Facebook Reels caption engine
@@ -60,8 +77,8 @@ Nilai tiap kandidat dari: relevansi semantik ke isi video · relevansi audiens �
 - Jangan mengarang volume, popularitas, ranking. Jangan pakai paket hashtag yang sama di semua video tanpa evaluasi.
 
 ## 7. Caption style rules
-Natural, Gen Z, tetap profesional (selaras naskah VO).
-**Dilarang:** emoji berlebihan (±3 maks) · kalimat template ala AI ("Di era digital ini…", "Yuk simak!", "Jangan lupa like, comment, share") · hashtag dumping · clickbait palsu · manipulasi engagement · CTA "wajib komen"/"spam komentar" · caption identik di semua platform · semua konten jadi hard selling.
+Ikuti `brand.persona` dan bahasa VO. Default: natural, kasual tapi profesional.
+**Dilarang:** emoji berlebihan (±3 maks) · kalimat template ala AI ("Di era digital ini…", "Yuk simak!", "In today's fast-paced world…", "Don't forget to like, comment, and share") · hashtag dumping · clickbait palsu · manipulasi engagement · CTA manipulatif ("wajib komen", "spam komen", "tag 3 teman", "comment YES", "smash that like", "follow for part 2" padahal tidak ada part 2) · kata di `brand.banned_words` · caption identik di semua platform · semua konten jadi hard selling.
 **Pendekatan** (pilih berdasar isi video, bukan acak): curiosity · problem-solution · storytelling · educational insight · myth vs fact · opinion/discussion · soft selling.
 
 ## 8. Caption quality control
@@ -79,7 +96,7 @@ Rubrik internal per platform — **alat editorial, bukan skor algoritma dan buka
 Total < 85 → revisi caption. Tulis skor di `content-metadata.json`.
 **Hard checks** (semua wajib lulus): hashtag ≤ batas platform · klaim faktual sesuai sumber · tidak ada keyword/hashtag menyesatkan · caption tidak bertentangan dengan video · tidak ada engagement bait manipulatif. Setelah dicek manual set `hard_checks_passed: true`.
 
-`mr publish-check` otomatis memeriksa: blok caption terisi, jumlah hashtag vs batas/preset, hashtag duplikat & generik, UTF-16 TikTok, pola engagement bait, emoji berlebihan, hook terlalu panjang, bagian wajib lengkap, tanggal verifikasi, skor ≥ 85, hashtag caption = metadata, caption identik antar platform, alasan hashtag ada di riset. Laporan: `publishing/caption-qc.md`.
+`mr publish-check` otomatis memeriksa: profil brand terisi, kata terlarang brand, blok caption terisi, jumlah hashtag vs batas/preset, hashtag duplikat & generik, UTF-16 TikTok, pola engagement bait (Indonesia & Inggris), emoji berlebihan, hook terlalu panjang, bagian wajib lengkap, tanggal verifikasi, skor ≥ 85, hashtag caption = metadata, caption identik antar platform, alasan hashtag ada di riset. Laporan: `publishing/caption-qc.md`.
 
 ## 9. Output — `publishing/`
 | File | Isi |

@@ -737,7 +737,10 @@ PUB_RULES = {
 }
 PUB_GENERIC = {"fyp", "foryou", "foryoupage", "fy", "viral", "reels", "explore", "explorepage", "trending", "xyzbca", "fypシ"}
 PUB_BAIT = [r"wajib\s+komen", r"spam\s+komen", r"komen\s+(yang\s+)?banyak", r"follow\s+dulu\s+baru", r"like\s+dulu", r"tag\s+\d+\s+teman",
-            r"jangan\s+di-?skip", r"auto\s+fyp", r"pasti\s+fyp", r"dijamin\s+viral"]
+            r"jangan\s+di-?skip", r"auto\s+fyp", r"pasti\s+fyp", r"dijamin\s+viral",
+            # English
+            r"comment\s+[\"']?(yes|1|below\s+to\s+win)", r"smash\s+(that|the)\s+like", r"like\s+(and|&)\s+share\s+(if|or)", r"tag\s+\d+\s+friends",
+            r"spam\s+the\s+comments", r"share\s+(this\s+)?or\s+(bad\s+luck|you)", r"guaranteed\s+(viral|fyp)", r"don'?t\s+scroll"]
 PUB_SECTIONS = ["Caption final", "Keyword", "Hashtag", "Alasan", "Cover title", "CTA", "Alternatif hook", "Terakhir verifikasi"]
 
 
@@ -773,6 +776,12 @@ def cmd_publish_check(a):
         meta = json.loads((out / "content-metadata.json").read_text())
     except Exception as e:
         add("error", "meta", f"content-metadata.json tidak valid: {e}")
+    brand = meta.get("brand") or {}
+    if not brand.get("name"):
+        add("warn", "brand", "brand.name kosong di content-metadata.json (isi dari brief; modul ini netral brand)")
+    if not brand.get("language"):
+        add("error", "brand", "brand.language belum diisi (bahasa caption)")
+    banned = [w for w in brand.get("banned_words", []) if w]
     for plat, rule in PUB_RULES.items():
         f = out / rule["file"]
         if not f.exists():
@@ -795,6 +804,9 @@ def cmd_publish_check(a):
             add("error", plat, f"hashtag generik/tidak relevan: {', '.join('#' + g for g in gen)}")
         if rule["max_utf16"] and utf16_len(cap) > rule["max_utf16"]:
             add("error", plat, f"caption {utf16_len(cap)} UTF-16 units > {rule['max_utf16']} (batas Content Posting API)")
+        for w in banned:
+            if re.search(r"(?<!\w)" + re.escape(w) + r"(?!\w)", cap, re.I):
+                add("error", plat, f"kata terlarang brand: '{w}'")
         for pat in PUB_BAIT:
             if re.search(pat, cap, re.I):
                 add("error", plat, f"engagement bait terdeteksi: /{pat}/")

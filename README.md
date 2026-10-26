@@ -19,7 +19,7 @@ Semua video otomatis memakai desain brand AGJ Labs (tema terang, warna logo biru
 Contoh lengkap: [`examples/vibe-coding-agj/`](examples/vibe-coding-agj/).
 
 ## Fase 10 — Social Publishing
-Setelah QC video lulus, skill membuat caption khusus **TikTok, Instagram Reels, dan Facebook Reels** di `publishing/`: caption siap copy-paste, keyword, hashtag terpilih + alasan, cover title, CTA, alternatif hook, riset hashtag, checklist, dan metadata. `mr.py publish-check` memvalidasi batas hashtag (IG maks 5), panjang caption API TikTok (2.200 UTF-16), hashtag generik, engagement bait, dan skor rubrik ≥ 85. Panduan: [`references/social-publishing.md`](references/social-publishing.md).
+Modul ini **netral brand & bahasa**: identitas brand, bahasa, wilayah, dan persona diambil dari brief tiap project (`content-metadata.json` → `brand`). Setelah QC video lulus, skill membuat caption khusus **TikTok, Instagram Reels, dan Facebook Reels** di `publishing/`: caption siap copy-paste, keyword, hashtag terpilih + alasan, cover title, CTA, alternatif hook, riset hashtag, checklist, dan metadata. `mr.py publish-check` memvalidasi batas hashtag (IG maks 5), panjang caption API TikTok (2.200 UTF-16), hashtag generik, engagement bait, dan skor rubrik ≥ 85. Panduan: [`references/social-publishing.md`](references/social-publishing.md).
 
 ## Install
 ```bash

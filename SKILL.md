@@ -125,12 +125,13 @@ Lalu lanjut **Fase 10** (wajib sebelum konten dinyatakan siap publish).
 
 
 ## Fase 10 — Social Publishing (caption & discovery)  `[G5]`
-Modul `social-publishing`. Berjalan setelah QC video LULUS. Panduan lengkap & aturan platform terverifikasi: **`references/social-publishing.md`** (baca sebelum menulis caption).
+Modul `social-publishing` — **netral brand & bahasa** (berlaku untuk brand apa pun, bukan hanya desain default). Berjalan setelah QC video LULUS. Panduan lengkap & aturan platform terverifikasi: **`references/social-publishing.md`** (baca sebelum menulis caption).
 ```
 Video QC Passed → Content Analysis → Platform Research → Keyword Research → Caption Drafting → Hashtag Filtering → Caption QC → Publishing Package → User Approval → Ready to Publish
 ```
 1. `mr publish-init <dir>` → membuat `publishing/` (ditolak bila QC video belum LULUS).
-2. **Content analysis**: baca brief, storyboard, VO/subtitle final, pesan utama, audiens, tujuan konten. Caption tidak boleh bertentangan dengan video; tanpa statistik/klaim karangan.
+2. **Brand profile**: isi `content-metadata.json` → `brand` (nama, handle, branded hashtag, bahasa, wilayah, persona, kata terlarang, mode jualan) dari brief; kalau kosong tanya user atau pakai default netral.
+   **Content analysis**: baca brief, storyboard, VO/subtitle final, pesan utama, audiens, tujuan konten. Caption tidak boleh bertentangan dengan video; tanpa statistik/klaim karangan.
 3. **Platform research**: kalau ada web, cek ulang aturan resmi (TikTok, Instagram/Meta, Facebook/Meta). Label tiap info: Official Rule / Best Practice / Experiment. Tanpa web → pakai tabel di reference + tanggal verifikasi, jangan klaim trending.
 4. **Keyword & hashtag research** → `hashtags-research.md`: alasan per hashtag, sumber & tanggal data tren (atau "tidak ada data"). Jangan mengarang volume/ranking; jangan paket hashtag sama untuk semua video.
 5. **Caption drafting** — beda per platform, pendekatan dipilih sesuai isi (curiosity, problem-solution, storytelling, educational, myth vs fact, discussion, soft selling):
@@ -141,7 +142,7 @@ Video QC Passed → Content Analysis → Platform Research → Keyword Research 
 7. Tampilkan paket ke user (caption siap copy-paste per platform + cover title + alternatif hook) → setuju → `mr approve <dir> publishing`. **Jangan publish otomatis tanpa izin user.**
 8. **Post-publish analytics** (bila user kirim data): views/reach, watch time, retention, shares, saves, komentar berkualitas, profile visits, follows/konversi → rekomendasi video berikutnya. Jangan menyimpulkan hashtag menyebabkan kenaikan views tanpa bukti.
 
-Gaya caption: natural Gen Z tapi profesional; dilarang emoji berlebihan, kalimat template AI, hashtag dumping, clickbait palsu, "wajib komen"/"spam komen", caption identik lintas platform, dan menjadikan semua konten hard selling.
+Gaya caption: ikuti `brand.persona` dan bahasa VO (default natural, kasual-profesional); dilarang emoji berlebihan, kalimat template AI, hashtag dumping, clickbait palsu, CTA manipulatif ("wajib komen", "tag 3 teman", "comment YES", dll.), kata terlarang brand, caption identik lintas platform, dan menjadikan semua konten hard selling.
 Serahkan: video, naskah final, folder `publishing/` (3 caption + riset hashtag + checklist + metadata), ringkasan QC video & caption.
 
 ---

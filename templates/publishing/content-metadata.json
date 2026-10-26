@@ -1,4 +1,14 @@
 {
+  "brand": {
+    "name": "",
+    "handle": "",
+    "branded_hashtags": [],
+    "language": "id",
+    "region": "",
+    "persona": "natural, kasual-profesional",
+    "banned_words": [],
+    "selling_mode": "soft"
+  },
   "title": "",
   "video_file": "",
   "goal": "awareness|education|engagement|conversion",

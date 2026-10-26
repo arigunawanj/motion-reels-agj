@@ -4,6 +4,7 @@
 > Pendekatan caption (pilih 1 sesuai isi video): curiosity · problem-solution · storytelling · educational insight · myth vs fact · opinion/discussion · soft selling
 
 **Pendekatan:** {pendekatan + alasan singkat}
+**Brand / bahasa:** {brand.name} · {brand.language}-{brand.region} · persona: {brand.persona}
 **Tujuan konten:** {awareness | education | engagement | conversion}
 
 ## Caption final (siap copy-paste)
