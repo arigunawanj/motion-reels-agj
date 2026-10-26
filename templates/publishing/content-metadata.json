@@ -1,0 +1,79 @@
+{
+  "title": "",
+  "video_file": "",
+  "goal": "awareness|education|engagement|conversion",
+  "approach": "",
+  "audience": "",
+  "main_message": "",
+  "rules_verified_at": "YYYY-MM-DD",
+  "sources": [
+    "references/social-publishing.md"
+  ],
+  "platforms": {
+    "tiktok": {
+      "caption_file": "tiktok-caption.md",
+      "keywords": {
+        "primary": "",
+        "secondary": []
+      },
+      "hashtags": [],
+      "cover_title": "",
+      "cta": "",
+      "score": {
+        "relevance": null,
+        "hook": null,
+        "readability": null,
+        "discoverability": null,
+        "platform_fit": null,
+        "cta": null,
+        "total": null
+      },
+      "hard_checks_passed": false
+    },
+    "instagram": {
+      "caption_file": "instagram-caption.md",
+      "keywords": {
+        "primary": "",
+        "secondary": []
+      },
+      "hashtags": [],
+      "cover_title": "",
+      "cta": "",
+      "score": {
+        "relevance": null,
+        "hook": null,
+        "readability": null,
+        "discoverability": null,
+        "platform_fit": null,
+        "cta": null,
+        "total": null
+      },
+      "hard_checks_passed": false
+    },
+    "facebook": {
+      "caption_file": "facebook-caption.md",
+      "keywords": {
+        "primary": "",
+        "secondary": []
+      },
+      "hashtags": [],
+      "cover_title": "",
+      "cta": "",
+      "score": {
+        "relevance": null,
+        "hook": null,
+        "readability": null,
+        "discoverability": null,
+        "platform_fit": null,
+        "cta": null,
+        "total": null
+      },
+      "hard_checks_passed": false
+    }
+  },
+  "analytics": {
+    "published_at": {},
+    "metrics": {},
+    "notes": ""
+  }
+}

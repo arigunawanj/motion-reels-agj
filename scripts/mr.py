@@ -11,6 +11,8 @@ mr.py — CLI produksi Motion Reels (portable: Claude Code / Codex / Antigravity
   preview   <dir> [--scale 0.5] [--fps 30]          video preview kualitas rendah
   render    <dir> [--workers N] [--scenes id,id] [--no-cache] [--allow-silent]   final 1080x1920 60fps
   qc        <dir> [--video file.mp4]                QC otomatis → production/qc-report.md
+  publish-init  <dir>                               Fase 10: siapkan publishing/ (butuh QC lulus)
+  publish-check <dir>                               validasi caption/hashtag TikTok, IG, FB → publishing/caption-qc.md
 
 Kebutuhan: python3, ffmpeg/ffprobe, numpy, playwright (+ `python -m playwright install chromium`).
 TTS: env TTS_API_KEY (wajib), TTS_URL (default https://tts-api.agjhub.site/v1/audio/speech).
@@ -21,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SR = 48000
-GATES = ["brief", "concept", "storyboard", "preview"]
+GATES = ["brief", "concept", "storyboard", "preview", "publishing"]
 DOCS = ["creative-brief.md", "concept.md", "storyboard.md", "visual-direction.md"]
 DEFAULT_URL = "https://tts-api.agjhub.site/v1/audio/speech"
 
@@ -75,7 +77,8 @@ def gate_snapshot(d, gate):
     d = Path(d)
     files = {"brief": ["production/creative-brief.md"], "concept": ["production/concept.md"],
              "storyboard": ["production/storyboard.md", "script.json"],
-             "preview": ["script.json", "scenes.js", "style.css"]}[gate]
+             "preview": ["script.json", "scenes.js", "style.css"],
+             "publishing": [f"publishing/{f}" for f in PUB_FILES]}[gate]
     return sha(*[fhash(d / f) for f in files])
 
 
@@ -120,7 +123,8 @@ NEXT = {
     "brief": "Fase 2 Research & Concept: isi production/concept.md (3 hook, 3 storytelling, analogi) → approve concept",
     "concept": "Fase 3–4 Script & Storyboard: production/storyboard.md + script.json + visual-direction.md → approve storyboard",
     "storyboard": "Fase 5–7: check-tts → tts → koding scenes.js → stills → preview → tampilkan → approve preview",
-    "preview": "Fase 8–9: render → qc → perbaiki sampai 0 error → serahkan",
+    "preview": "Fase 8–9: render → qc → perbaiki sampai 0 error → Fase 10: publish-init → caption → publish-check → approve publishing",
+    "publishing": "Siap publish — kirim paket publishing/ ke user; jangan publish otomatis tanpa izin",
 }
 
 
@@ -722,6 +726,124 @@ def cmd_qc(a):
 
 
 # ================================================================ main
+# ================================================================ Fase 10: social publishing
+PUB_FILES = ["tiktok-caption.md", "instagram-caption.md", "facebook-caption.md", "hashtags-research.md",
+             "publishing-checklist.md", "content-metadata.json"]
+# Aturan terverifikasi (lihat references/social-publishing.md untuk sumber & tanggal)
+PUB_RULES = {
+    "tiktok":    {"file": "tiktok-caption.md",    "max_tags": None, "preset": (3, 5), "max_utf16": 2200},
+    "instagram": {"file": "instagram-caption.md", "max_tags": 5,    "preset": (1, 5), "max_utf16": None},
+    "facebook":  {"file": "facebook-caption.md",  "max_tags": None, "preset": (0, 3), "max_utf16": None},
+}
+PUB_GENERIC = {"fyp", "foryou", "foryoupage", "fy", "viral", "reels", "explore", "explorepage", "trending", "xyzbca", "fypシ"}
+PUB_BAIT = [r"wajib\s+komen", r"spam\s+komen", r"komen\s+(yang\s+)?banyak", r"follow\s+dulu\s+baru", r"like\s+dulu", r"tag\s+\d+\s+teman",
+            r"jangan\s+di-?skip", r"auto\s+fyp", r"pasti\s+fyp", r"dijamin\s+viral"]
+PUB_SECTIONS = ["Caption final", "Keyword", "Hashtag", "Alasan", "Cover title", "CTA", "Alternatif hook", "Terakhir verifikasi"]
+
+
+def utf16_len(text):
+    return len(text.encode("utf-16-le")) // 2
+
+
+def pub_caption(md):
+    m = re.search(r"```caption\n(.*?)```", md, re.S)
+    return m.group(1).strip() if m else None
+
+
+def cmd_publish_init(a):
+    d = Path(a.dir).resolve()
+    rep = d / "production" / "qc-report.md"
+    if not rep.exists() or "**LULUS**" not in rep.read_text():
+        die("Fase 10 butuh QC video LULUS dulu: jalankan `mr.py qc` sampai 0 error.")
+    out = d / "publishing"; out.mkdir(exist_ok=True)
+    for f in PUB_FILES:
+        if a.force or not (out / f).exists():
+            shutil.copy(ROOT / "templates" / "publishing" / f, out / f)
+    print(f"✓ {out}  — isi caption (baca brief/storyboard/VO dulu), lalu: mr.py publish-check {a.dir}")
+
+
+def cmd_publish_check(a):
+    d = Path(a.dir).resolve(); out = d / "publishing"
+    if not out.exists():
+        die("publishing/ belum ada — jalankan publish-init dulu.")
+    errs, warns, caps = [], [], {}
+    add = lambda lvl, plat, msg: (errs if lvl == "error" else warns).append(f"[{plat}] {msg}")
+    meta = {}
+    try:
+        meta = json.loads((out / "content-metadata.json").read_text())
+    except Exception as e:
+        add("error", "meta", f"content-metadata.json tidak valid: {e}")
+    for plat, rule in PUB_RULES.items():
+        f = out / rule["file"]
+        if not f.exists():
+            add("error", plat, f"{rule['file']} tidak ada"); continue
+        md = f.read_text()
+        cap = pub_caption(md)
+        if not cap or "{" in cap and "}" in cap and "TODO" in cap.upper():
+            add("error", plat, "caption final belum diisi (blok ```caption)"); continue
+        caps[plat] = cap
+        tags = re.findall(r"(?<!\w)#([\w\u00C0-\u024F]+)", cap)
+        n = len(tags); lo, hi = rule["preset"]
+        if rule["max_tags"] is not None and n > rule["max_tags"]:
+            add("error", plat, f"{n} hashtag > batas platform {rule['max_tags']}")
+        elif not (lo <= n <= hi):
+            add("warn", plat, f"{n} hashtag di luar preset internal {lo}–{hi} (bukan aturan platform)")
+        if len(set(t.lower() for t in tags)) < n:
+            add("error", plat, "hashtag duplikat")
+        gen = [t for t in tags if t.lower() in PUB_GENERIC]
+        if gen:
+            add("error", plat, f"hashtag generik/tidak relevan: {', '.join('#' + g for g in gen)}")
+        if rule["max_utf16"] and utf16_len(cap) > rule["max_utf16"]:
+            add("error", plat, f"caption {utf16_len(cap)} UTF-16 units > {rule['max_utf16']} (batas Content Posting API)")
+        for pat in PUB_BAIT:
+            if re.search(pat, cap, re.I):
+                add("error", plat, f"engagement bait terdeteksi: /{pat}/")
+        emo = len(re.findall(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", cap))
+        if emo > 4:
+            add("warn", plat, f"{emo} emoji — terlalu banyak (maks ±3)")
+        first = cap.split("\n", 1)[0]
+        if len(first) > 120:
+            add("warn", plat, "kalimat pertama (hook) terlalu panjang, > 120 karakter")
+        for sec in PUB_SECTIONS:
+            if sec.lower() not in md.lower():
+                add("error", plat, f"bagian '{sec}' tidak ada")
+        if re.search(r"Terakhir verifikasi[^\n]*\{", md):
+            add("error", plat, "tanggal verifikasi aturan belum diisi")
+        pm = meta.get("platforms", {}).get(plat, {})
+        sc = (pm.get("score") or {}).get("total")
+        if sc is None:
+            add("error", plat, "skor rubrik belum diisi di content-metadata.json")
+        elif sc < 85:
+            add("error", plat, f"skor rubrik {sc}/100 < 85 → revisi caption")
+        mt = [t.lower().lstrip("#") for t in pm.get("hashtags", [])]
+        if mt and sorted(mt) != sorted(t.lower() for t in tags):
+            add("error", plat, "hashtag di caption ≠ hashtag di content-metadata.json")
+        if not pm.get("hard_checks_passed"):
+            add("error", plat, "hard checks belum dikonfirmasi (hard_checks_passed=true setelah dicek manual)")
+    vals = list(caps.values())
+    for i in range(len(vals)):
+        for j in range(i + 1, len(vals)):
+            if re.sub(r"\s+", " ", vals[i]) == re.sub(r"\s+", " ", vals[j]):
+                add("error", "semua", "caption identik antar platform — wajib diadaptasi")
+    hr = (out / "hashtags-research.md").read_text() if (out / "hashtags-research.md").exists() else ""
+    for plat, cap in caps.items():
+        for t in re.findall(r"(?<!\w)#([\w\u00C0-\u024F]+)", cap):
+            if f"#{t}".lower() not in hr.lower():
+                add("error", plat, f"#{t} tidak punya alasan di hashtags-research.md")
+    rep = [f"# Caption QC — {d.name}", "", f"_{datetime.now().isoformat(timespec='seconds')}_", "",
+           f"**{'LULUS' if not errs else 'GAGAL'}** — {len(errs)} error, {len(warns)} warning", "",
+           "Skor rubrik = alat editorial internal, bukan skor algoritma platform / prediksi FYP.", ""]
+    for plat, cap in caps.items():
+        tags = re.findall(r"(?<!\w)#\w+", cap)
+        rep.append(f"- {plat}: {utf16_len(cap)} UTF-16 units · {len(tags)} hashtag · skor {meta.get('platforms', {}).get(plat, {}).get('score', {}).get('total', '?')}")
+    rep += [""] + [f"- ✗ {e}" for e in errs] + [f"- ! {w}" for w in warns]
+    (out / "caption-qc.md").write_text("\n".join(rep) + "\n")
+    print("\n".join(rep[4:]))
+    print(f"→ publishing/caption-qc.md" + ("" if errs else f" · tampilkan paket ke user → mr.py approve {a.dir} publishing"))
+    if errs:
+        sys.exit(1)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest="cmd", required=True)
@@ -742,6 +864,8 @@ def main():
     p.add_argument("--scenes"); p.add_argument("--no-cache", action="store_true"); p.add_argument("--allow-silent", action="store_true")
     p.add_argument("--out"); p.set_defaults(fn=cmd_render)
     p = sp.add_parser("qc"); p.add_argument("dir"); p.add_argument("--video"); p.set_defaults(fn=cmd_qc)
+    p = sp.add_parser("publish-init"); p.add_argument("dir"); p.add_argument("--force", action="store_true"); p.set_defaults(fn=cmd_publish_init)
+    p = sp.add_parser("publish-check"); p.add_argument("dir"); p.set_defaults(fn=cmd_publish_check)
     a = ap.parse_args(); a.fn(a)
 
 

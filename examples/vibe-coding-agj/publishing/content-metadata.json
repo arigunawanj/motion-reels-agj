@@ -1,0 +1,104 @@
+{
+  "title": "5 Tips Vibe Coding",
+  "video_file": "AGJ_5_Tips_Vibe_Coding_v5_9x16_60fps.mp4",
+  "goal": "education + soft selling",
+  "approach": "problem-solution (TT), educational insight (IG), storytelling+diskusi (FB)",
+  "audience": "Gen Z & pemula IT Indonesia; calon klien UMKM/startup",
+  "main_message": "Hasil AI berantakan karena cara kasih perintah; 5 kebiasaan bikin hasilnya rapi",
+  "rules_verified_at": "2026-10-26",
+  "sources": [
+    "references/social-publishing.md"
+  ],
+  "platforms": {
+    "tiktok": {
+      "caption_file": "tiktok-caption.md",
+      "keywords": {
+        "primary": "vibe coding",
+        "secondary": [
+          "ngoding pakai AI",
+          "prompt AI coding",
+          "tips programming"
+        ]
+      },
+      "hashtags": [
+        "#vibecoding",
+        "#aicoding",
+        "#belajarcoding",
+        "#programmerindonesia"
+      ],
+      "cover_title": "5 Tips Vibe Coding",
+      "cta": "Pertanyaan diskusi ringan (\"skip nomor berapa?\") — relevan karena penonton bisa refleksi kebiasaan sendiri.",
+      "score": {
+        "relevance": 24,
+        "hook": 17,
+        "readability": 14,
+        "discoverability": 13,
+        "platform_fit": 13,
+        "cta": 8,
+        "total": 89
+      },
+      "hard_checks_passed": true
+    },
+    "instagram": {
+      "caption_file": "instagram-caption.md",
+      "keywords": {
+        "primary": "vibe coding",
+        "secondary": [
+          "prompt AI coding",
+          "ngoding pakai AI",
+          "AGENTS.md"
+        ]
+      },
+      "hashtags": [
+        "#vibecoding",
+        "#aicoding",
+        "#belajarcoding",
+        "#programmerindonesia",
+        "#agjlabs"
+      ],
+      "cover_title": "Prompt Asal = Hasil Berantakan",
+      "cta": "Save sebagai checklist + soft selling DM @agjlabs (sesuai scene jasa di video).",
+      "score": {
+        "relevance": 24,
+        "hook": 18,
+        "readability": 14,
+        "discoverability": 14,
+        "platform_fit": 14,
+        "cta": 9,
+        "total": 93
+      },
+      "hard_checks_passed": true
+    },
+    "facebook": {
+      "caption_file": "facebook-caption.md",
+      "keywords": {
+        "primary": "ngoding pakai AI",
+        "secondary": [
+          "vibe coding",
+          "tips coding pemula"
+        ]
+      },
+      "hashtags": [
+        "#vibecoding",
+        "#belajarcoding"
+      ],
+      "cover_title": "Biar Ngoding Pakai AI Rapi",
+      "cta": "Pertanyaan pengalaman (diskusi bermakna), tanpa ajakan spam komentar.",
+      "score": {
+        "relevance": 24,
+        "hook": 16,
+        "readability": 15,
+        "discoverability": 12,
+        "platform_fit": 14,
+        "cta": 8,
+        "total": 89
+      },
+      "hard_checks_passed": true
+    }
+  },
+  "analytics": {
+    "published_at": {},
+    "metrics": {},
+    "notes": ""
+  }
+}

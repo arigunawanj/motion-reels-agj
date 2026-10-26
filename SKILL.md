@@ -9,8 +9,8 @@ Kamu bertindak sebagai studio motion graphics kecil: creative director, penulis 
 **Jangan langsung bikin video setelah dapat topik.** Ikuti fase di bawah, berhenti di setiap gerbang approval kecuali user memilih **Auto Mode**.
 
 ```
-Briefing ─▶ Research & Concept ─▶ Script & Storyboard ─▶ Finalisasi ─▶ Produksi ─▶ TTS & Sound ─▶ Preview ─▶ Final ─▶ QC
-   [G1 brief]      [G2 concept]                       [G3 storyboard]                          [G4 preview]        (wajib)
+Briefing ─▶ Research & Concept ─▶ Script & Storyboard ─▶ Finalisasi ─▶ Produksi ─▶ TTS & Sound ─▶ Preview ─▶ Final ─▶ QC ─▶ Social Publishing
+   [G1 brief]      [G2 concept]                       [G3 storyboard]                          [G4 preview]        (wajib)   [G5 publishing]
 ```
 
 Semua perintah di bawah: `python3 <skill>/scripts/mr.py <cmd> <project>` (selanjutnya ditulis `mr`).
@@ -121,7 +121,28 @@ Render di-cache **per scene** (hash kode scene + tetangga + timing). Revisi satu
 ## Fase 9 — Quality Control (wajib, juga di Auto Mode)
 `mr qc <dir>` → `production/qc-report.md` + frame bermasalah di `build/qc/`. Mendeteksi: spesifikasi/durasi/FPS salah, frame hitam, layar diam > 2 dtk (animasi patah), caption terpotong/masuk zona UI, teks keluar layar/tabrakan caption, kamera berlebihan, VO terpotong, caption di luar rentang audio, SFX di luar scene/terlalu rapat, loudness & clipping.
 Elemen dekoratif yang sengaja keluar layar (pita, background teks) tandai `data-qc="ignore"`. Lalu cek manual `production/qc-checklist.md` (lihat frame/contact sheet). **Perbaiki semua error, render ulang, QC lagi** sampai lulus. Warning dinilai: perbaiki atau jelaskan kenapa disengaja.
-Serahkan: video, naskah final, caption posting + 3–5 hashtag, ringkasan QC.
+Lalu lanjut **Fase 10** (wajib sebelum konten dinyatakan siap publish).
+
+
+## Fase 10 — Social Publishing (caption & discovery)  `[G5]`
+Modul `social-publishing`. Berjalan setelah QC video LULUS. Panduan lengkap & aturan platform terverifikasi: **`references/social-publishing.md`** (baca sebelum menulis caption).
+```
+Video QC Passed → Content Analysis → Platform Research → Keyword Research → Caption Drafting → Hashtag Filtering → Caption QC → Publishing Package → User Approval → Ready to Publish
+```
+1. `mr publish-init <dir>` → membuat `publishing/` (ditolak bila QC video belum LULUS).
+2. **Content analysis**: baca brief, storyboard, VO/subtitle final, pesan utama, audiens, tujuan konten. Caption tidak boleh bertentangan dengan video; tanpa statistik/klaim karangan.
+3. **Platform research**: kalau ada web, cek ulang aturan resmi (TikTok, Instagram/Meta, Facebook/Meta). Label tiap info: Official Rule / Best Practice / Experiment. Tanpa web → pakai tabel di reference + tanggal verifikasi, jangan klaim trending.
+4. **Keyword & hashtag research** → `hashtags-research.md`: alasan per hashtag, sumber & tanggal data tren (atau "tidak ada data"). Jangan mengarang volume/ranking; jangan paket hashtag sama untuk semua video.
+5. **Caption drafting** — beda per platform, pendekatan dipilih sesuai isi (curiosity, problem-solution, storytelling, educational, myth vs fact, discussion, soft selling):
+   - **TikTok**: hook di kalimat pertama, keyword natural, konteks singkat, 3–5 hashtag (preset), ≤ 2.200 UTF-16 units bila via API, tanpa #fyp/#viral otomatis.
+   - **Instagram Reels**: hook → insight → nilai praktis → CTA natural → **maks 5 hashtag** (aturan resmi), tanpa #reels/#explore otomatis.
+   - **Facebook Reels**: konteks jelas & mudah dipahami, diskusi bermakna, 0–3 hashtag (preset), tanpa stuffing.
+6. **Caption QC**: skor rubrik internal (relevansi 25, hook 20, natural 15, keyword 15, platform-fit 15, CTA 10) di `content-metadata.json`; < 85 → revisi. Hard checks manual → `hard_checks_passed: true`. Lalu `mr publish-check <dir>` sampai LULUS (`publishing/caption-qc.md`).
+7. Tampilkan paket ke user (caption siap copy-paste per platform + cover title + alternatif hook) → setuju → `mr approve <dir> publishing`. **Jangan publish otomatis tanpa izin user.**
+8. **Post-publish analytics** (bila user kirim data): views/reach, watch time, retention, shares, saves, komentar berkualitas, profile visits, follows/konversi → rekomendasi video berikutnya. Jangan menyimpulkan hashtag menyebabkan kenaikan views tanpa bukti.
+
+Gaya caption: natural Gen Z tapi profesional; dilarang emoji berlebihan, kalimat template AI, hashtag dumping, clickbait palsu, "wajib komen"/"spam komen", caption identik lintas platform, dan menjadikan semua konten hard selling.
+Serahkan: video, naskah final, folder `publishing/` (3 caption + riset hashtag + checklist + metadata), ringkasan QC video & caption.
 
 ---
 
@@ -132,6 +153,7 @@ Serahkan: video, naskah final, caption posting + 3–5 hashtag, ringkasan QC.
 | Ganti voice | `voice` di script.json → `mr tts` → render |
 | Ubah animasi/visual 1 scene | edit `E.scene` di scenes.js / style.css → stills → render (hanya scene itu + tetangga) |
 | Tambah/hapus scene | update storyboard.md + script.json + scenes.js (id & urutan sama) → tts → preview |
+| Revisi caption / hashtag | edit file di `publishing/` + skor di metadata → `mr publish-check` → approve publishing ulang |
 | Ganti gaya visual global (override desain AGJ) | hanya bila user minta → visual-direction.md bagian "Override desain" + style.css → preview ulang |
 Selalu tunjukkan diff singkat ke user dan, di Studio Mode, minta approval ulang untuk gerbang yang terdampak.
 
