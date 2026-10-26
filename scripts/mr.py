@@ -2,7 +2,7 @@
 """
 mr.py — CLI produksi Motion Reels (portable: Claude Code / Codex / Antigravity / terminal biasa)
 
-  init      <dir> [--mode studio|auto] [--voice ari-santai] [--title ".."]   project + dokumen produksi
+  init      <dir> [--mode studio|auto] [--voice ari-santai] [--title ".."] [--rubrik pulse|nocap|decode|labmode|unpack]   project + dokumen produksi
   status    <dir>                                   fase, approval, langkah berikutnya
   approve   <dir> brief|concept|storyboard|preview [--note ..]
   check-tts [<dir>] [--voice ..]                    preflight API TTS (wajib sebelum produksi)
@@ -108,11 +108,12 @@ def cmd_init(a):
     sc = json.loads((d / "script.json").read_text())
     if a.voice: sc["voice"] = a.voice
     if a.title: sc["title"] = a.title
+    if getattr(a, "rubrik", None): sc["rubrik"] = a.rubrik
     (d / "script.json").write_text(json.dumps(sc, indent=2, ensure_ascii=False))
     st = load_state(d)
     st["mode"] = a.mode
     save_state(d, st)
-    print(f"✓ project {d} ({a.mode} mode)\n  Fase 1: isi production/creative-brief.md → tampilkan ke user → mr.py approve {d} brief")
+    print(f"✓ project {d} ({a.mode} mode{', rubrik ' + a.rubrik if getattr(a, 'rubrik', None) else ', rubrik BELUM dipilih'})\n  Fase 1: isi production/creative-brief.md → tampilkan ke user → mr.py approve {d} brief")
 
 
 NEXT = {
@@ -316,7 +317,7 @@ def cmd_tts(a):
                        "audio": str(audio.relative_to(d)) if audio else None, "words": words})
         t += dur
     tl = {"fps": sc.get("fps", 60), "total": round(t, 3), "handle": sc.get("handle", ""), "title": sc.get("title", ""),
-          "voice": voice, "voiced": voiced, "scenes": scenes}
+          "rubrik": sc.get("rubrik", ""), "voice": voice, "voiced": voiced, "scenes": scenes}
     (d / "build" / "timeline.json").write_text(json.dumps(tl, indent=1, ensure_ascii=False))
     (d / "build" / "timeline.js").write_text("window.TIMELINE = " + json.dumps(tl, ensure_ascii=False) + ";\n")
     print(f"✓ timeline: {len(scenes)} scene, total {t:.2f}s {'— VO final' if voiced else '— DRAFT tanpa suara'}")
@@ -727,7 +728,8 @@ def main():
     sp = ap.add_subparsers(dest="cmd", required=True)
     w_def = max(1, min(6, os.cpu_count() or 2))
     p = sp.add_parser("init"); p.add_argument("dir"); p.add_argument("--mode", choices=["studio", "auto"], default="studio")
-    p.add_argument("--voice"); p.add_argument("--title"); p.set_defaults(fn=cmd_init)
+    p.add_argument("--voice"); p.add_argument("--title")
+    p.add_argument("--rubrik", choices=["pulse", "nocap", "decode", "labmode", "unpack"]); p.set_defaults(fn=cmd_init)
     p = sp.add_parser("status"); p.add_argument("dir"); p.set_defaults(fn=cmd_status)
     p = sp.add_parser("approve"); p.add_argument("dir"); p.add_argument("gate", choices=GATES); p.add_argument("--note")
     p.set_defaults(fn=cmd_approve)

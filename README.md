@@ -18,6 +18,21 @@ Briefing → Research & Concept → Script & Storyboard → Finalisasi → Produ
 Semua video otomatis memakai desain brand AGJ Labs (tema terang, warna logo biru-kuning-hijau, potongan logo melayang di background, transisi sapuan logo, kartu putih taktil, caption pill biru/kuning). Temanya terpasang saat `mr init` lewat `templates/project/`. Ganti desain hanya kalau diminta.
 Contoh lengkap: [`examples/vibe-coding-agj/`](examples/vibe-coding-agj/).
 
+## Rubrik konten AGJ Labs
+Setiap video masuk satu rubrik, dengan badge di hook, formula naskah, dan CTA masing-masing ([`references/rubrik-konten.md`](references/rubrik-konten.md)):
+
+| Rubrik | Badge | Isi |
+|---|---|---|
+| **PULSE.** | Kabar Tech | Berita tech → artinya buat bisnis |
+| **NO CAP.** | Ngomong Jujur | Opini & bongkar mitos tech/bisnis |
+| **DECODE.** | Biar Gampang | Masalah operasional + solusi via analogi |
+| **LAB MODE.** | Kami Coba | Eksperimen & demo yang dibangun tim |
+| **UNPACK.** | Bedah Bisnis | Roast website, studi kasus, before-after |
+
+```bash
+python3 $S init decode-01-admin-fotokopi --rubrik decode --voice ari-santai
+```
+
 ## Fase 10 — Social Publishing
 Setelah QC video lulus, caption TikTok, Instagram Reels, dan Facebook Reels dibuat oleh skill terpisah [**social-caption-publish**](https://github.com/arigunawanj/social-caption-publish) (netral brand & bahasa). Pasang juga skill itu:
 ```bash
@@ -40,7 +55,7 @@ Agent akan briefing dulu, kasih konsep & storyboard, preview, baru render final.
 CLI manual:
 ```bash
 S=~/.claude/skills/motion-reels-agj/scripts/mr.py
-python3 $S init  konten-1 --voice ari-santai     # project + dokumen produksi
+python3 $S init  konten-1 --rubrik decode --voice ari-santai   # project + dokumen produksi
 python3 $S status konten-1                       # fase & langkah berikutnya
 python3 $S approve konten-1 brief                # setelah user setuju (brief/concept/storyboard/preview)
 python3 $S check-tts konten-1                    # preflight API TTS

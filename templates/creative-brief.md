@@ -5,7 +5,9 @@
 
 | Item | Isi |
 |---|---|
+| Rubrik | PULSE. / NO CAP. / DECODE. / LAB MODE. / UNPACK. (lihat references/rubrik-konten.md) |
 | Topik | |
+| Jembatan bisnis | 1 kalimat: "terus apa artinya buat usaha penonton?" |
 | Tujuan konten | edukasi / awareness / lead / jualan / engagement |
 | Target audiens | siapa, umur, level pemahaman, rasa sakit utama |
 | Platform | TikTok / Reels / Shorts (semua 9:16) |

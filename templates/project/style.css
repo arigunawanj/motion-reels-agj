@@ -58,3 +58,19 @@ body { color: var(--ink); }
 .logo-card img { width: 100%; display: block; }
 
 /* ===== style khusus video ini di bawah ===== */
+
+/* ---- badge rubrik konten (references/rubrik-konten.md) ---- */
+.rubrik { position: absolute; display: flex; align-items: center; gap: 18px; padding: 12px 30px 12px 14px; border-radius: 28px; background: #fff;
+  border: 3px solid #E3E9F6; box-shadow: 0 8px 0 #E3E9F6, 0 24px 50px -20px rgba(37,99,235,.25); white-space: nowrap; z-index: 5; }
+.rk-ic { position: relative; width: 76px; height: 76px; border-radius: 20px; background: var(--rk); overflow: hidden; flex: none; box-shadow: 0 6px 0 rgba(15,23,42,.25); }
+.rk-ic i, .rk-ic b { position: absolute; display: block; }
+.rk-tx b { display: block; font: 900 40px/1 var(--font); color: var(--navy); letter-spacing: 1px; }
+.rk-tx small { display: block; margin-top: 6px; font: 800 22px var(--font); letter-spacing: 3px; text-transform: uppercase; color: var(--rk); }
+.rubrik[style*="#0F172A"] .rk-tx small { color: #64748B; }
+.rk-bar { left: 30px; top: -6px; width: 18px; height: 90px; border-radius: 9px; background: #fff; transform: rotate(33deg); }
+.rk-wave { left: 12px; top: 12px; width: 52px; height: 52px; border-radius: 50%; border: 5px solid rgba(255,255,255,.55); border-left-color: transparent; border-bottom-color: transparent; }
+.rk-penta { left: 14px; top: 14px; width: 48px; height: 46px; background: #fff; clip-path: polygon(50% 0,100% 45%,82% 100%,18% 100%,0 45%); }
+.rk-brace { left: 0; right: 0; top: 14px; text-align: center; font: 900 38px var(--font); color: #FBBF24; letter-spacing: -2px; }
+.rk-para { left: 10px; top: 22px; width: 56px; height: 32px; background: #fff; clip-path: polygon(0 0,62% 0,100% 100%,38% 100%); }
+.rk-box { left: 16px; top: 30px; width: 44px; height: 32px; border-radius: 6px; background: #fff; }
+.rk-lid { left: 12px; top: 16px; width: 52px; height: 12px; border-radius: 4px; background: #FBBF24; transform: rotate(-14deg); }

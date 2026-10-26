@@ -31,6 +31,7 @@ Contoh lengkap bergaya AGJ: `examples/vibe-coding-agj/` (rujukan utama untuk kom
 - Headline Inter Display 900; kode/angka DejaVu Sans Mono.
 - Konten bernomor (tips/langkah): helper `tipHead(n, kata, warna)` + `tipHeadIn(r, t)` dari template (badge `01`, titik progres, kata kunci 92px di top 322/394).
 - Logo AGJ (`stacked.png`) dipakai di scene CTA (`.logo-card`). Logo/brand pihak lain tidak boleh.
+- **Badge rubrik** di scene hook: `rubrikBadge(TIMELINE_RUBRIK())` di `build()` + `rubrikBadgeIn(r.rubrik, t)` di `update()` (helper ada di template). Posisi default kiri atas (top 268); geser objek hook supaya tidak tertutup.
 
 ### Gaya motion AGJ
 - Visual = cerita/analogi (objek bergerak), bukan teks berjalan. Teks di visual cukup kata kunci/angka.
@@ -42,6 +43,21 @@ Contoh lengkap bergaya AGJ: `examples/vibe-coding-agj/` (rujukan utama untuk kom
 - `"sfxVolume": 0.22` (sudah di template). ±1 SFX per 3 detik: whoosh transisi otomatis + pop/ding pelan di momen penting + `hits` maks 2.
 - **Jangan pakai SFX `type`/`tick` beruntun untuk animasi mengetik.**
 - Tanpa musik kecuali file milik user (tim biasanya menambah sound trending di aplikasi).
+
+### ★ Rubrik konten AGJ Labs (WAJIB)
+Setiap video masuk **satu rubrik** — detail, formula naskah, CTA, porsi feed, dan bank ide di `references/rubrik-konten.md` (**baca sebelum Fase 1**).
+
+| Rubrik | Badge | Tugas | CTA default |
+|---|---|---|---|
+| `pulse` **PULSE.** | Kabar Tech | Berita tech → artinya buat bisnis | follow / save |
+| `nocap` **NO CAP.** | Ngomong Jujur | Opini, bongkar mitos, realita | komen pendapat |
+| `decode` **DECODE.** | Biar Gampang | Masalah operasional + solusi via analogi | komen keyword |
+| `labmode` **LAB MODE.** | Kami Coba | Eksperimen & demo yang dibangun tim | komen keyword demo |
+| `unpack` **UNPACK.** | Bedah Bisnis | Roast website, studi kasus, before-after | komen ROAST / DM |
+
+- Audiens utama: **pemilik usaha non-teknis (25–55)**, bukan developer. Bahasa santai-sopan, slang minimal. Tiap video wajib punya **jembatan bisnis** ("terus apa artinya buat usaha kamu?").
+- `mr init <dir> --rubrik <id>` mengisi `"rubrik"` di `script.json`; badge di hook membaca nilai ini. Nama folder: `<rubrik>-<nomor>-<slug>`.
+- User tidak menyebut rubrik → rekomendasikan satu berdasarkan topik di ringkasan brief, minta konfirmasi di G1.
 
 ### Voice
 Voice bebas diganti per video: kalau user menyebut nama voice ("voice suci"), pakai `--voice <nama>` saat init atau ubah `voice` di script.json. Daftar voice: `GET /v1/voices` di server TTS.
@@ -56,8 +72,8 @@ Saat minta approval: tampilkan ringkasan yang bisa dibaca dalam 30 detik + file 
 ---
 
 ## Fase 1 — Briefing  `[G1]`
-1. `mr init <dir> [--voice ari-santai]` → membuat project + `production/` berisi template (tema AGJ Labs + logo sudah terpasang).
-2. Isi `production/creative-brief.md` dari pesan user, memori/konteks, dan brand yang sudah dikenal.
+1. `mr init <dir> --rubrik <id> [--voice ari-santai]` → membuat project + `production/` berisi template (tema AGJ Labs + logo sudah terpasang).
+2. Tentukan **rubrik** (`references/rubrik-konten.md`) lalu isi `production/creative-brief.md` dari pesan user, memori/konteks, dan brand yang sudah dikenal — termasuk baris Rubrik & Jembatan bisnis.
 3. Tanyakan **hanya** yang benar-benar kosong dan berpengaruh (maks 4 pertanyaan sekaligus): tujuan, audiens, durasi, pesan utama, CTA, voice. Gaya visual tidak perlu ditanya — default AGJ Labs.
 4. Tampilkan ringkasan brief → approval → `mr approve <dir> brief`.
 
@@ -65,7 +81,7 @@ Saat minta approval: tampilkan ringkasan yang bisa dibaca dalam 30 detik + file 
 1. Riset dengan tool yang ada (web search/fetch, dokumen user). Catat sumber di `concept.md`. **Klaim yang tidak bisa diverifikasi → ganti kalimat umum.**
 2. Buat 3 hook, 3 pendekatan storytelling, 1 analogi utama (+ batasnya), rekomendasi gaya motion + alasannya untuk audiens ini.
 3. Rekomendasikan satu kombinasi. Bisa langsung lanjut ke Fase 3 dalam satu approval bila user setuju.
-Panduan: `references/naskah-genz.md` (formula, gaya bahasa, bank analogi).
+Panduan: `references/naskah-genz.md` (formula, gaya bahasa, bank analogi) + formula rubrik di `references/rubrik-konten.md` (formula rubrik menang bila berbeda).
 
 ## Fase 3 — Script & Storyboard
 1. Tulis naskah VO lengkap (35–55 dtk ≈ 100–140 kata), bahasa Gen Z natural tapi profesional, kalimat ≤ 12 kata. `*kata*` = penekanan.

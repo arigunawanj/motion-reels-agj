@@ -14,6 +14,24 @@ function tipHeadIn(r, t, at = 0.1) {
   enter(r.head, t, at, { from: 'left', dist: 80 });
   r.ch.forEach((c, i) => enter(c, t, at + 0.12 + i * 0.035, { from: 'up', dist: 90, dur: 0.45 }));
 }
+/* ---------- badge rubrik (lihat references/rubrik-konten.md) ---------- */
+const RUBRIK = {
+  pulse:   { name: 'PULSE.',    sub: 'Kabar Tech',    col: '#2563EB', icon: '<i class="rk-bar"></i><i class="rk-wave"></i>' },
+  nocap:   { name: 'NO CAP.',   sub: 'Ngomong Jujur', col: '#F59E0B', icon: '<i class="rk-penta"></i>' },
+  decode:  { name: 'DECODE.',   sub: 'Biar Gampang',  col: '#0F172A', icon: '<b class="rk-brace">{ }</b>' },
+  labmode: { name: 'LAB MODE.', sub: 'Kami Coba',     col: '#10B981', icon: '<i class="rk-para"></i>' },
+  unpack:  { name: 'UNPACK.',   sub: 'Bedah Bisnis',  col: '#3B82F6', icon: '<i class="rk-box"></i><i class="rk-lid"></i>' },
+};
+// rubrik video ini (dari script.json → build/timeline.js)
+const TIMELINE_RUBRIK = () => (window.TIMELINE && TIMELINE.rubrik) || '';
+// taruh di build() scene hook: el.innerHTML = rubrikBadge(TIMELINE_RUBRIK()) + `...`
+function rubrikBadge(id, { top = 268, left = 90 } = {}) {
+  const k = RUBRIK[id]; if (!k) return '';
+  return `<div class="rubrik" data-r="rubrik" style="top:${top}px;left:${left}px;--rk:${k.col}">
+    <div class="rk-ic">${k.icon}</div><div class="rk-tx"><b>${k.name}</b><small>${k.sub}</small></div></div>`;
+}
+// panggil di update(): rubrikBadgeIn(r.rubrik, t)
+function rubrikBadgeIn(el, t, at = 0.0) { if (el) enter(el, t, at, { from: 'left', dist: 120, dur: 0.55 }); }
 // titik di sepanjang polyline (deterministik, dipakai SVG & kamera)
 function along(pts, k) {
   const seg = []; let tot = 0;
@@ -32,10 +50,10 @@ E.scene({
   at: { x: 0, y: 0 },
   hits: ctx => [ctx.word('masalah')],
   build(el) {
-    el.innerHTML = `<div class="card" data-r="card" style="left:120px;top:520px;width:840px;padding:60px;text-align:center">
+    el.innerHTML = rubrikBadge(TIMELINE_RUBRIK()) + `<div class="card" data-r="card" style="left:120px;top:520px;width:840px;padding:60px;text-align:center">
       <div class="lbl">Hook</div><div class="h-xl" style="color:${C.blue}">MASALAH<span style="color:${C.amber}">.</span></div></div>`;
   },
-  update(r, t, ctx) { enter(r.card, t, ctx.word('masalah') - 0.15, { from: 'zoom' }); },
+  update(r, t, ctx) { rubrikBadgeIn(r.rubrik, t); enter(r.card, t, ctx.word('masalah') - 0.15, { from: 'zoom' }); },
   cam: (t, ctx) => ({ z: lerp(1.4, 1, p(t, 0, 1.2, 'outExpo')) }),
 });
 
