@@ -38,4 +38,4 @@ Pertanyaan pengalaman (diskusi bermakna), tanpa ajakan spam komentar.
 3. Bukan AI-nya yang salah, coba cek cara kamu kasih perintah.
 
 ## Terakhir verifikasi aturan
-2026-10-26 — sumber: references/social-publishing.md (IG maks 5 hashtag; TikTok API 2.200 UTF-16; FB tanpa batas resmi → preset 0–3)
+2026-10-26 — sumber: skill social-caption-publish (references/caption-guide.md) (IG maks 5 hashtag; TikTok API 2.200 UTF-16; FB tanpa batas resmi → preset 0–3)

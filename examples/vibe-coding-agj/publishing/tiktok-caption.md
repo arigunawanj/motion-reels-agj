@@ -37,4 +37,4 @@ Pertanyaan diskusi ringan ("skip nomor berapa?") — relevan karena penonton bis
 3. Stop copas kode AI sebelum 5 kebiasaan ini jadi refleks.
 
 ## Terakhir verifikasi aturan
-2026-10-26 — sumber: references/social-publishing.md (IG maks 5 hashtag; TikTok API 2.200 UTF-16; FB tanpa batas resmi → preset 0–3)
+2026-10-26 — sumber: skill social-caption-publish (references/caption-guide.md) (IG maks 5 hashtag; TikTok API 2.200 UTF-16; FB tanpa batas resmi → preset 0–3)

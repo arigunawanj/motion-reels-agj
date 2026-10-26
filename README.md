@@ -19,7 +19,10 @@ Semua video otomatis memakai desain brand AGJ Labs (tema terang, warna logo biru
 Contoh lengkap: [`examples/vibe-coding-agj/`](examples/vibe-coding-agj/).
 
 ## Fase 10 — Social Publishing
-Modul ini **netral brand & bahasa**: identitas brand, bahasa, wilayah, dan persona diambil dari brief tiap project (`content-metadata.json` → `brand`). Setelah QC video lulus, skill membuat caption khusus **TikTok, Instagram Reels, dan Facebook Reels** di `publishing/`: caption siap copy-paste, keyword, hashtag terpilih + alasan, cover title, CTA, alternatif hook, riset hashtag, checklist, dan metadata. `mr.py publish-check` memvalidasi batas hashtag (IG maks 5), panjang caption API TikTok (2.200 UTF-16), hashtag generik, engagement bait, dan skor rubrik ≥ 85. Panduan: [`references/social-publishing.md`](references/social-publishing.md).
+Setelah QC video lulus, caption TikTok, Instagram Reels, dan Facebook Reels dibuat oleh skill terpisah [**social-caption-publish**](https://github.com/arigunawanj/social-caption-publish) (netral brand & bahasa). Pasang juga skill itu:
+```bash
+curl -fsSL https://raw.githubusercontent.com/arigunawanj/social-caption-publish/main/install.sh | sh
+```
 
 ## Install
 ```bash
@@ -46,8 +49,6 @@ python3 $S stills konten-1                       # contact sheet
 python3 $S preview konten-1                      # 540×960@30 cepat
 python3 $S render konten-1 --workers 8           # final 1080×1920@60, cache per scene
 python3 $S qc konten-1                           # laporan QC → production/qc-report.md
-python3 $S publish-init konten-1                 # Fase 10: siapkan publishing/
-python3 $S publish-check konten-1                # validasi caption & hashtag TikTok/IG/FB
 ```
 Coba contoh: `cp -R ~/.claude/skills/motion-reels-agj/examples/website-lemot . && python3 $S init website-lemot` (melengkapi engine & index.html), lalu `tts` → `preview`.
 

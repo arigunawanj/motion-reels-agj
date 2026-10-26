@@ -22,7 +22,7 @@
   "main_message": "Hasil AI berantakan karena cara kasih perintah; 5 kebiasaan bikin hasilnya rapi",
   "rules_verified_at": "2026-10-26",
   "sources": [
-    "references/social-publishing.md"
+    "skill social-caption-publish (references/caption-guide.md)"
   ],
   "platforms": {
     "tiktok": {

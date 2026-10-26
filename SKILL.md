@@ -124,26 +124,13 @@ Elemen dekoratif yang sengaja keluar layar (pita, background teks) tandai `data-
 Lalu lanjut **Fase 10** (wajib sebelum konten dinyatakan siap publish).
 
 
-## Fase 10 — Social Publishing (caption & discovery)  `[G5]`
-Modul `social-publishing` — **netral brand & bahasa** (berlaku untuk brand apa pun, bukan hanya desain default). Berjalan setelah QC video LULUS. Panduan lengkap & aturan platform terverifikasi: **`references/social-publishing.md`** (baca sebelum menulis caption).
-```
-Video QC Passed → Content Analysis → Platform Research → Keyword Research → Caption Drafting → Hashtag Filtering → Caption QC → Publishing Package → User Approval → Ready to Publish
-```
-1. `mr publish-init <dir>` → membuat `publishing/` (ditolak bila QC video belum LULUS).
-2. **Brand profile**: isi `content-metadata.json` → `brand` (nama, handle, branded hashtag, bahasa, wilayah, persona, kata terlarang, mode jualan) dari brief; kalau kosong tanya user atau pakai default netral.
-   **Content analysis**: baca brief, storyboard, VO/subtitle final, pesan utama, audiens, tujuan konten. Caption tidak boleh bertentangan dengan video; tanpa statistik/klaim karangan.
-3. **Platform research**: kalau ada web, cek ulang aturan resmi (TikTok, Instagram/Meta, Facebook/Meta). Label tiap info: Official Rule / Best Practice / Experiment. Tanpa web → pakai tabel di reference + tanggal verifikasi, jangan klaim trending.
-4. **Keyword & hashtag research** → `hashtags-research.md`: alasan per hashtag, sumber & tanggal data tren (atau "tidak ada data"). Jangan mengarang volume/ranking; jangan paket hashtag sama untuk semua video.
-5. **Caption drafting** — beda per platform, pendekatan dipilih sesuai isi (curiosity, problem-solution, storytelling, educational, myth vs fact, discussion, soft selling):
-   - **TikTok**: hook di kalimat pertama, keyword natural, konteks singkat, 3–5 hashtag (preset), ≤ 2.200 UTF-16 units bila via API, tanpa #fyp/#viral otomatis.
-   - **Instagram Reels**: hook → insight → nilai praktis → CTA natural → **maks 5 hashtag** (aturan resmi), tanpa #reels/#explore otomatis.
-   - **Facebook Reels**: konteks jelas & mudah dipahami, diskusi bermakna, 0–3 hashtag (preset), tanpa stuffing.
-6. **Caption QC**: skor rubrik internal (relevansi 25, hook 20, natural 15, keyword 15, platform-fit 15, CTA 10) di `content-metadata.json`; < 85 → revisi. Hard checks manual → `hard_checks_passed: true`. Lalu `mr publish-check <dir>` sampai LULUS (`publishing/caption-qc.md`).
-7. Tampilkan paket ke user (caption siap copy-paste per platform + cover title + alternatif hook) → setuju → `mr approve <dir> publishing`. **Jangan publish otomatis tanpa izin user.**
-8. **Post-publish analytics** (bila user kirim data): views/reach, watch time, retention, shares, saves, komentar berkualitas, profile visits, follows/konversi → rekomendasi video berikutnya. Jangan menyimpulkan hashtag menyebabkan kenaikan views tanpa bukti.
+## Fase 10 — Social Publishing  `[G5]`
+Caption & paket publikasi dikerjakan oleh skill terpisah **[`social-caption-publish`](https://github.com/arigunawanj/social-caption-publish)** (netral brand & bahasa, satu sumber logika caption — jangan menulis ulang aturannya di sini).
+1. Pastikan skill terpasang: `curl -fsSL https://raw.githubusercontent.com/arigunawanj/social-caption-publish/main/install.sh | sh`. Belum terpasang & tidak bisa install → minta user memasangnya; jangan improvisasi caption tanpa aturan skill itu.
+2. Jalankan skill `social-caption-publish` dengan `<dir>` = folder project video ini. Input yang diberikan: `production/creative-brief.md`, `production/storyboard.md`, `script.json` (VO final = subtitle), `production/qc-report.md`, dan brand dari brief.
+3. Output `publishing/` di folder project (3 caption + riset hashtag + checklist + metadata), QC caption lulus, lalu minta persetujuan user. **Jangan publish otomatis tanpa izin user.**
 
-Gaya caption: ikuti `brand.persona` dan bahasa VO (default natural, kasual-profesional); dilarang emoji berlebihan, kalimat template AI, hashtag dumping, clickbait palsu, CTA manipulatif ("wajib komen", "tag 3 teman", "comment YES", dll.), kata terlarang brand, caption identik lintas platform, dan menjadikan semua konten hard selling.
-Serahkan: video, naskah final, folder `publishing/` (3 caption + riset hashtag + checklist + metadata), ringkasan QC video & caption.
+Serahkan: video, naskah final, folder `publishing/`, ringkasan QC video & caption.
 
 ---
 
@@ -154,7 +141,7 @@ Serahkan: video, naskah final, folder `publishing/` (3 caption + riset hashtag +
 | Ganti voice | `voice` di script.json → `mr tts` → render |
 | Ubah animasi/visual 1 scene | edit `E.scene` di scenes.js / style.css → stills → render (hanya scene itu + tetangga) |
 | Tambah/hapus scene | update storyboard.md + script.json + scenes.js (id & urutan sama) → tts → preview |
-| Revisi caption / hashtag | edit file di `publishing/` + skor di metadata → `mr publish-check` → approve publishing ulang |
+| Revisi caption / hashtag | lewat skill `social-caption-publish` (edit `publishing/` → `scp.py check` → approval ulang) |
 | Ganti gaya visual global (override desain AGJ) | hanya bila user minta → visual-direction.md bagian "Override desain" + style.css → preview ulang |
 Selalu tunjukkan diff singkat ke user dan, di Studio Mode, minta approval ulang untuk gerbang yang terdampak.
 

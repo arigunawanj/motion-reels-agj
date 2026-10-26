@@ -47,4 +47,4 @@ Save sebagai checklist + soft selling DM @agjlabs (sesuai scene jasa di video).
 3. Vibe coding boleh, asal tahu 5 aturan ini.
 
 ## Terakhir verifikasi aturan
-2026-10-26 — sumber: references/social-publishing.md (IG maks 5 hashtag; TikTok API 2.200 UTF-16; FB tanpa batas resmi → preset 0–3)
+2026-10-26 — sumber: skill social-caption-publish (references/caption-guide.md) (IG maks 5 hashtag; TikTok API 2.200 UTF-16; FB tanpa batas resmi → preset 0–3)
