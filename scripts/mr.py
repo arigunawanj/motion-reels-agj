@@ -13,7 +13,7 @@ mr.py — CLI produksi Motion Reels (portable: Claude Code / Codex / Antigravity
   qc        <dir> [--video file.mp4]                QC otomatis → production/qc-report.md
 
 Kebutuhan: python3, ffmpeg/ffprobe, numpy, playwright (+ `python -m playwright install chromium`).
-TTS: env TTS_API_KEY (wajib), TTS_URL (default https://tts-api.agjhub.site/v1/audio/speech).
+TTS: env TTS_API_KEY (wajib), TTS_URL (default https://tts-api.venturo.pro/v1/audio/speech).
 """
 import argparse, hashlib, json, math, os, re, shutil, subprocess, sys, time, urllib.request, urllib.error, wave
 from datetime import datetime
@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SR = 48000
 GATES = ["brief", "concept", "storyboard", "preview"]
 DOCS = ["creative-brief.md", "concept.md", "storyboard.md", "visual-direction.md"]
-DEFAULT_URL = "https://tts-api.agjhub.site/v1/audio/speech"
+DEFAULT_URL = "https://tts-api.venturo.pro/v1/audio/speech"
 
 
 # ================================================================ util

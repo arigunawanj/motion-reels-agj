@@ -46,6 +46,7 @@ git clone https://github.com/arigunawanj/motion-reels-agj && cd motion-reels-agj
 brew install ffmpeg         # atau apt install ffmpeg
 pip install numpy playwright && python3 -m playwright install chromium
 export TTS_API_KEY=...      # simpan di ~/.zshrc — jangan pernah commit
+# server TTS default: https://tts-api.venturo.pro/v1/audio/speech (ganti lewat env TTS_URL kalau perlu)
 ```
 
 ## Pakai
