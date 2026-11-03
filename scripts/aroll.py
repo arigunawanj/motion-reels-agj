@@ -359,7 +359,7 @@ def build_flow(g):
     cx = 705
     body = ['<div class="bgd"></div><div class="scan"></div><div class="vig"></div>', thumb(s0, d, 44, 700, 300, 533)]
     js = ["POP('#th',.0,{scale:.85,y:0});"]
-    body.append('<div class="chipo" id="%s-chip" style="left:380px;width:650px;text-align:center;top:430px;font-size:60px;border:none;box-shadow:none"><span style="display:inline-block;padding:10px 28px;border:3px solid #fff;border-radius:16px;box-shadow:0 0 18px rgba(255,255,255,.55),inset 0 0 12px rgba(255,255,255,.25)">%s</span></div>' % html.escape(g["chip"]))
+    body.append('<div class="chipo" id="%s-chip" style="left:380px;width:650px;text-align:center;top:430px;font-size:60px;border:none;box-shadow:none"><span style="display:inline-block;padding:10px 28px;border:3px solid #fff;border-radius:16px;box-shadow:0 0 18px rgba(255,255,255,.55),inset 0 0 12px rgba(255,255,255,.25)">%s</span></div>' % (i, html.escape(g["chip"])))
     js.append("POP('#%s-chip',%.2f,{scale:.8,y:0});" % (i, L(g.get("chip_t", s0 + 0.1))))
     paths = ['<path id="%s-c0" d="M%d 516 V 572"/>' % (i, cx)]
     ny = 600
