@@ -1,6 +1,6 @@
 ---
 name: motion-reels-agj
-description: Produksi video motion graphics TikTok/Instagram Reels/Shorts (9:16, 1080x1920, 60fps) secara profesional dengan workflow studio — briefing, riset, konsep, naskah Gen Z + analogi, storyboard, TTS, kamera bergerak, preview, render final, dan QC otomatis. Juga mengedit rekaman talking-head milik user (footage sendiri + B-roll + motion grafik + monolog, gaya editorial gelap). Juga menyusun vlog dari banyak klip footage sendiri (urut jam rekam, auto-cut angle terbaik, narasi VO TTS + suara asli + SFX halus, sistem tema). Pakai saat user minta video pendek, reels, tiktok, motion graphic, explainer, "edit video ini" dengan rekaman dirinya bicara, "buatin vlog dari klip ini", atau revisi scene/VO dari video yang sudah dibuat.
+description: Produksi video motion graphics TikTok/Instagram Reels/Shorts (9:16, 1080x1920, 60fps) secara profesional dengan workflow studio — briefing, riset, konsep, naskah Gen Z + analogi, storyboard, TTS, kamera bergerak, preview, render final, dan QC otomatis. Juga mengedit rekaman talking-head milik user (footage sendiri + B-roll + motion grafik + monolog, gaya editorial gelap). Juga menyusun vlog dari banyak klip footage sendiri (urut jam rekam, auto-cut angle terbaik, narasi VO TTS + suara asli + SFX halus, sistem tema). Tiga tipe konten (Motion Grafik, Vlog, Ngobrol) berbagi struktur folder aset sound/konten/footage dan backsound kantor. Pakai saat user minta video pendek, reels, tiktok, motion graphic, explainer, "edit video ini" dengan rekaman dirinya bicara, "buatin vlog dari klip ini", pilih backsound, atau revisi scene/VO dari video yang sudah dibuat.
 ---
 
 # Motion Reels — Universal Short-Form Motion Graphics
@@ -19,14 +19,14 @@ Kebutuhan: python3, ffmpeg, `pip install numpy playwright && python3 -m playwrig
 ## ★ Pilih tipe konten dulu
 | User mengirim / minta | Tipe | Jalur |
 |---|---|---|
-| Topik/ide, tanpa rekaman ("bikin reels soal X") | **Motion graphic + VO TTS** | Fase 1–10 di bawah (`mr.py`, desain AGJ terang) |
-| **Rekaman dirinya bicara ke kamera** + minta diedit ("edit ini", "kasih B-roll", "bikin kayak video referensi ini") | **Talking-head + B-roll** | **Baca `references/talking-head-broll.md` dulu**, produksi lewat `scripts/aroll.py`, contoh `examples/nocap-skill-ai-talkinghead/` |
+| Topik/ide, tanpa rekaman ("bikin reels soal X") | **Motion Grafik + VO TTS** | Fase 1–10 di bawah (`mr.py`, desain AGJ terang) |
+| **Rekaman dirinya bicara ke kamera** + minta diedit ("edit ini", "kasih B-roll", "bikin kayak video referensi ini") | **Ngobrol** (talking-head + B-roll) | **Baca `references/talking-head-broll.md` dulu**, produksi lewat `scripts/aroll.py`, contoh `examples/nocap-skill-ai-talkinghead/` |
 | **Banyak klip** perjalanan/aktivitas/event + minta dijadikan vlog ("auto cut angle yang bagus", "kayak vlog liburan", "kasih VO narasi") | **Vlog narasi** (tema `clean`; tema lain, mis. motion grafik, ditambah bertahap) | **Baca `references/vlog-narasi.md` dulu**, produksi lewat `scripts/vlog.py`, contoh `examples/malang-bali-vlog/` |
 
-Talking-head + B-roll = footage sendiri jadi A-roll, ditambah gambar lain (foto stok Pexels), motion grafik, dan monolog asli (tanpa TTS). Gayanya **editorial gelap** (kinetic type sans + *serif italic* diketik per huruf, jump-cut, light-leak, kartu judul hitam + coretan merah, judul glitch, diagram arang + thumbnail neon hijau), bukan tema AGJ terang. Gerbang G1/G3/G4, rubrik, QC, dan Fase 10 tetap berlaku; langkah teknisnya ada di reference tersebut.
+Ngobrol = footage sendiri jadi A-roll, ditambah gambar lain (foto stok Pexels), motion grafik, dan monolog asli (tanpa TTS). Gayanya **editorial gelap** (kinetic type sans + *serif italic* diketik per huruf, jump-cut, light-leak, kartu judul hitam + coretan merah, judul glitch, diagram arang + thumbnail neon hijau), bukan tema AGJ terang. Gerbang G1/G3/G4, rubrik, QC, dan Fase 10 tetap berlaku; langkah teknisnya ada di reference tersebut.
 Butuh tambahan: node (`npx hyperframes`), `pip install faster-whisper`.
 
-Vlog narasi = klip-klip sendiri disusun jadi cerita per jam rekam. Suara dibagi tiga: **suara asli user dipertahankan** di momen dia bicara ke kamera (caption hasil koreksi), **narasi TTS hanya penghubung** antar lokasi (≤ 12 kata, gaya ngobrol), dan **suasana asli** dibiarkan terdengar di shot tanpa narasi. Aturan inti: (1) `vlog.py scan` dulu, **lihat semua contact sheet** dan baca ulang transkrip (Whisper sering salah dengar) sebelum menulis cerita; (2) hanya fakta yang terlihat di footage atau diucapkan user, tebakan masuk daftar konfirmasi di `story-plan.md`; (3) SFX sintetis & sangat halus, selalu ada versi `-tanpa-sfx.mp4`; (4) backsound kantor: lihat `references/backsound.md`, pakai `"bgm"` di `vlog.json` dengan `BACKSOUND_DIR` (file audio tidak di-commit); (5) TTS memakai `TTS_API_KEY`/`TTS_URL` yang sama dengan `mr.py` (jangan ganti provider tanpa izin); (6) footage tambahan datang belakangan → scan ulang, sisipkan urut jam rekam, `build` lagi; (7) durasi > 90 dtk → tawarkan versi ringkas/2 part. Gaya visual lewat `theme` di `vlog.json` (sekarang `clean`; tema baru = entri baru di `THEMES`, jangan dibuat tanpa diminta). Gerbang G1/G3/G4, `vlog.py qc`, dan Fase 10 tetap berlaku. Butuh tambahan: `pip install numpy faster-whisper`, font Poppins.
+Vlog narasi = klip-klip sendiri disusun jadi cerita per jam rekam. Suara dibagi tiga: **suara asli user dipertahankan** di momen dia bicara ke kamera (caption hasil koreksi), **narasi TTS hanya penghubung** antar lokasi (≤ 12 kata, gaya ngobrol), dan **suasana asli** dibiarkan terdengar di shot tanpa narasi. Aturan inti: (1) `vlog.py scan` dulu, **lihat semua contact sheet** dan baca ulang transkrip (Whisper sering salah dengar) sebelum menulis cerita; (2) hanya fakta yang terlihat di footage atau diucapkan user, tebakan masuk daftar konfirmasi di `story-plan.md`; (3) SFX sintetis & sangat halus, selalu ada versi `-tanpa-sfx.mp4` (tanpa SFX & backsound); (4) backsound kantor: lihat `references/backsound.md`, pakai `"bgm"` di `vlog.json` (dicari di `sound/` proyek lalu `BACKSOUND_DIR`; file audio tidak di-commit); (5) TTS memakai `TTS_API_KEY`/`TTS_URL` yang sama dengan `mr.py` (jangan ganti provider tanpa izin); (6) footage tambahan datang belakangan → scan ulang, sisipkan urut jam rekam, `build` lagi; (7) durasi > 90 dtk → tawarkan versi ringkas/2 part. Gaya visual lewat `theme` di `vlog.json` (sekarang `clean`; tema baru = entri baru di `THEMES`, jangan dibuat tanpa diminta). Gerbang G1/G3/G4, `vlog.py qc`, dan Fase 10 tetap berlaku. Butuh tambahan: `pip install numpy faster-whisper`, font Poppins.
 
 
 ## ★ Tiga tipe konten & tiga folder aset (berlaku untuk semuanya)
@@ -125,6 +125,7 @@ Struktur project:
 script.json   naskah & metadata (sumber TTS)          scenes.js   satu E.scene() per scene
 style.css     style video ini                          production/ brief, concept, storyboard, visual-direction, QC
 audio/        mp3 TTS per scene (ter-cache)            build/      timeline, preview, cache render, laporan
+sound/ konten/ footage/   aset standar (lihat bagian tiga folder aset)
 ```
 API scene ringkas (lengkap: `references/motion-kamera.md`, contoh: `examples/website-lemot/`):
 ```js
@@ -146,7 +147,7 @@ E.scene({
    - HTTP 403 `error code: 1010` = Cloudflare menolak user-agent. `mr.py` versi ini sudah mengirim header `User-Agent`; kalau masih muncul, cek versi skill yang terpasang (`./install.sh` ulang).
 2. `mr tts <dir>` → mp3 per scene (cache per hash teks+voice), durasi scene = durasi audio aktual + jeda, timing kata disejajarkan ke jeda nyata di rekaman (silencedetect). Ganti voice: ubah `voice` di script.json lalu `mr tts <dir>`.
 3. `--draft` hanya untuk mencoba layout sebelum TTS tersedia; preview draft harus diberi label "tanpa VO" dan tidak boleh jadi final.
-4. SFX: ikuti **SFX AGJ** (minimal & halus); whoosh otomatis di transisi. Audio dimix dengan fade anti-klik, SFX & BGM ducking saat narasi, loudnorm -14 LUFS. BGM hanya dari file milik user (`"bgm": "audio/bgm.mp3"`).
+4. SFX: ikuti **SFX AGJ** (minimal & halus); whoosh otomatis di transisi. Audio dimix dengan fade anti-klik, SFX & BGM ducking saat narasi, loudnorm -14 LUFS. BGM hanya dari backsound kantor / file milik user (`"bgm": "nama.mp3"`, dicari di `sound/` lalu `$BACKSOUND_DIR`, katalog di `references/backsound.md`).
 
 ## Fase 7 — Preview  `[G4]`
 1. `mr stills <dir>` → `build/contact.jpg`; **lihat gambarnya** (kalau agent bisa membaca gambar) dan perbaiki dulu: layar kosong, teks tabrakan caption, objek keluar safe area, header terdorong ke zona UI atas, frame 0 belum menarik, warna keluar dari palet AGJ.
@@ -181,11 +182,12 @@ Serahkan: video, naskah final, folder `publishing/`, ringkasan QC video & captio
 | Ubah animasi/visual 1 scene | edit `E.scene` di scenes.js / style.css → stills → render (hanya scene itu + tetangga) |
 | Tambah/hapus scene | update storyboard.md + script.json + scenes.js (id & urutan sama) → tts → preview |
 | Revisi caption / hashtag | lewat skill `social-caption-publish` (edit `publishing/` → `scp.py check` → approval ulang) |
-| Talking-head: ganti teks/B-roll/diagram | edit `edit.json` → `aroll.py build` → `snap` → `render` (stock ulang kalau foto baru) |
-| Talking-head: SFX kurang/berisik | ubah `sfx` di `edit.json` (atau `mix` untuk versi tanpa SFX) — default sudah pelan |
+| Ngobrol: ganti teks/B-roll/diagram | edit `edit.json` → `aroll.py build` → `snap` → `render` (stock ulang kalau foto baru) |
+| Ngobrol: SFX kurang/berisik | ubah `sfx` di `edit.json` (atau `mix` untuk versi tanpa SFX) — default sudah pelan |
 | Vlog: ganti narasi / urutan / potongan klip | edit `vlog.json` → `vlog.py build` (VO yang teksnya tidak berubah dipakai dari cache `audio/`) → `qc` |
 | Vlog: ada footage tambahan | `vlog.py scan` folder baru → sisipkan scene urut jam rekam di `vlog.json` → `build` (uji cepat: `--scenes a-b --takes 1`) |
 | Vlog: TTS kurang natural / terpotong | tulis ulang kalimat lebih pendek ala ngobrol, `--takes 5`, cek `production/build-report.md` (kemiripan < 0.85), atau ganti voice di `vlog.json` |
+| Ganti/tambah backsound | isi/ubah `"bgm"` (nama file di `sound/` atau `$BACKSOUND_DIR`), build/render ulang; `volume` vlog default 0.30, motion `bgmVolume` default 0.16 |
 | Ganti gaya visual global (override desain AGJ) | hanya bila user minta → visual-direction.md bagian "Override desain" + style.css → preview ulang |
 Selalu tunjukkan diff singkat ke user dan, di Studio Mode, minta approval ulang untuk gerbang yang terdampak.
 
@@ -195,7 +197,7 @@ Selalu tunjukkan diff singkat ke user dan, di Studio Mode, minta approval ulang 
 - Maks 2 warna aksen per scene (dari palet logo AGJ), font tebal, angka mono. Header jangan sampai < 230px saat kamera bergerak. Ilustrasi dibuat sendiri dengan CSS/SVG yang konsisten.
 - Hindari kesan template AI: semua elemen masuk serempak, glow/blur berlebihan, spin tanpa makna, gradient pelangi, emoji sebagai satu-satunya visual, teks = transkrip.
 - Kamera hidup tapi terkendali: push-in default, pan ke objek yang dibahas, punch-in/shake hanya di momen penting.
-- Tanpa karakter, logo pihak lain, atau musik berhak cipta (logo AGJ Labs boleh). Klaim faktual bersumber.
+- Tanpa karakter atau logo pihak lain (logo AGJ Labs boleh). Musik hanya dari backsound kantor (`references/backsound.md`) atau file milik user; sebagian besar lagu kantor rilisan komersial, jadi sediakan juga versi tanpa musik untuk platform yang meng-claim. Klaim faktual bersumber.
 
 ## Adaptasi tool per agent
 - **Claude Code / Codex / Antigravity**: semua lewat shell + file; CLI ini sama di semuanya. Gunakan tool tanya-jawab bawaan untuk gerbang approval bila ada.
