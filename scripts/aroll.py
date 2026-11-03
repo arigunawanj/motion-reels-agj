@@ -20,6 +20,8 @@ Kebutuhan: python3, ffmpeg, node (npx), pip install faster-whisper numpy.
 """
 import argparse, html, json, math, os, re, shutil, subprocess, sys, urllib.request
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import assets
 
 HERE = Path(__file__).resolve().parent
 SKILL = HERE.parent
@@ -72,6 +74,7 @@ def cmd_init(a):
     (d / "assets" / "broll").mkdir(parents=True, exist_ok=True)
     (d / "assets" / "sfx").mkdir(parents=True, exist_ok=True)
     (d / "production").mkdir(exist_ok=True)
+    assets.scaffold(d, "ngobrol")
     (d / "compositions").mkdir(exist_ok=True)
     tpl = SKILL / "templates" / "aroll"
     spec = json.loads((tpl / "edit.json").read_text())

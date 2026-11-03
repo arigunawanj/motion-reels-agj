@@ -29,6 +29,17 @@ Butuh tambahan: node (`npx hyperframes`), `pip install faster-whisper`.
 Vlog narasi = klip-klip sendiri disusun jadi cerita per jam rekam. Suara dibagi tiga: **suara asli user dipertahankan** di momen dia bicara ke kamera (caption hasil koreksi), **narasi TTS hanya penghubung** antar lokasi (≤ 12 kata, gaya ngobrol), dan **suasana asli** dibiarkan terdengar di shot tanpa narasi. Aturan inti: (1) `vlog.py scan` dulu, **lihat semua contact sheet** dan baca ulang transkrip (Whisper sering salah dengar) sebelum menulis cerita; (2) hanya fakta yang terlihat di footage atau diucapkan user, tebakan masuk daftar konfirmasi di `story-plan.md`; (3) SFX sintetis & sangat halus, selalu ada versi `-tanpa-sfx.mp4`; (4) backsound kantor: lihat `references/backsound.md`, pakai `"bgm"` di `vlog.json` dengan `BACKSOUND_DIR` (file audio tidak di-commit); (5) TTS memakai `TTS_API_KEY`/`TTS_URL` yang sama dengan `mr.py` (jangan ganti provider tanpa izin); (6) footage tambahan datang belakangan → scan ulang, sisipkan urut jam rekam, `build` lagi; (7) durasi > 90 dtk → tawarkan versi ringkas/2 part. Gaya visual lewat `theme` di `vlog.json` (sekarang `clean`; tema baru = entri baru di `THEMES`, jangan dibuat tanpa diminta). Gerbang G1/G3/G4, `vlog.py qc`, dan Fase 10 tetap berlaku. Butuh tambahan: `pip install numpy faster-whisper`, font Poppins.
 
 
+## ★ Tiga tipe konten & tiga folder aset (berlaku untuk semuanya)
+Konten AGJ Labs ada **3 tipe**: **Motion Grafik** (`mr.py`), **Vlog** (`vlog.py`), **Ngobrol** = talking-head + B-roll (`aroll.py`). Semua `init` otomatis membuat 3 folder yang sama di proyek (logikanya di `scripts/assets.py`):
+
+| Folder | Isi | Peran per tipe |
+|---|---|---|
+| `sound/` | backsound pilihan, VO rekaman, SFX tambahan | `bgm` dicari di sini dulu, lalu `$BACKSOUND_DIR` (`references/backsound.md`) |
+| `konten/` | aset sendiri: **preferensi gambar**, logo, foto produk, screenshot | dibaca agent sebagai acuan visual **sebelum** mencari gambar luar (foto stok hanya kalau kosong) |
+| `footage/` | klip video | Vlog & Ngobrol: bahan utama. Motion Grafik: **jarang**, hanya sisipan selang-seling |
+
+Aturan: mulai dari isi tiga folder ini; kalau `konten/` berisi gambar, lihat semuanya dulu dan ikuti gayanya. Motion Grafik murni tetap jalan dengan `footage/` kosong. (Menyisipkan klip ke scene motion belum otomatis: engine `mr.py` merender HTML/SVG, jadi klip disiapkan sebagai aset terpisah.)
+
 ## ★ Desain default: AGJ Labs Brand (WAJIB kecuali user minta ganti)
 
 Semua video memakai **desain AGJ Labs** — untuk siapa pun yang memakai skill ini (termasuk tim digital marketing). `mr init` otomatis memasang temanya lewat `templates/project/` (`style.css`, `scenes.js`, `icon.png`, `stacked.png`). Tema bawaan engine (dark + lime/pink) **tidak dipakai** kecuali user eksplisit minta desain lain ("ganti desain", "tema gelap", "pakai warna brand X"); kalau begitu catat di `production/visual-direction.md` bagian "Override desain".

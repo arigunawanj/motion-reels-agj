@@ -10,6 +10,7 @@ export BACKSOUND_DIR=~/BACKSOUND     # dicari rekursif berdasarkan nama file
 Keputusan user: seluruh isi folder ini **boleh dipakai bebas** untuk konten AGJ Labs. Catatan praktis: sebagian besar rilisan komersial. Kalau TikTok/IG membisukan atau meng-claim video, ganti dengan versi `-tanpa-sfx.mp4` lalu tambahkan sound dari library aplikasi.
 
 ## Cara pakai
+- Taruh lagu pilihan di `sound/` proyek (dicari lebih dulu), atau cukup nama file + `BACKSOUND_DIR`.
 - **Vlog** (`vlog.py`): di `vlog.json` tambah `"bgm": {"file": "Synthwave goose - Blade Runner 2049.mp3", "volume": 0.30}`. Musik di-loudnorm dulu, ducking otomatis saat ada suara (VO/suara asli), fade in 1 dtk, fade out 1,5 dtk. Hanya masuk ke versi utama; `-tanpa-sfx.mp4` tetap bersih tanpa musik.
 - **Motion graphic** (`mr.py`): di `script.json` isi `"bgm": "audio/bgm.mp3"` (salin file ke folder `audio/` proyek) dan atur `bgmVolume` (default 0.16).
 - File tidak ketemu → build jalan tanpa musik + peringatan. Jangan menebak file lain.

@@ -18,6 +18,8 @@ TTS: env TTS_API_KEY (wajib), TTS_URL (default https://tts.venturo.pro/v1/audio/
 import argparse, hashlib, json, math, os, re, shutil, subprocess, sys, time, urllib.request, urllib.error, wave
 from datetime import datetime
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import assets
 
 ROOT = Path(__file__).resolve().parent.parent
 SR = 48000
@@ -105,6 +107,7 @@ def cmd_init(a):
             shutil.copy(ROOT / "templates" / doc, prod / doc)
     (d / "build").mkdir(exist_ok=True)
     (d / "audio").mkdir(exist_ok=True)
+    assets.scaffold(d, "motion")
     sc = json.loads((d / "script.json").read_text())
     if a.voice: sc["voice"] = a.voice
     if a.title: sc["title"] = a.title
@@ -396,8 +399,11 @@ def build_audio(d, tl, events, out_wav, sc_json):
     duck = 1 - 0.6 * np.clip(envv / 0.05, 0, 1)
     mix = vo + sfx * (1 - 0.35 * np.clip(envv / 0.05, 0, 1))
     bgm = sc_json.get("bgm")
-    if bgm and (d / bgm).exists():
-        b = decode(d / bgm, np)
+    bgm_file = assets.find_sound(d, bgm) if bgm else None
+    if bgm and not bgm_file:
+        print(f"! bgm '{bgm}' tidak ditemukan (taruh di sound/ atau set BACKSOUND_DIR) — tanpa musik")
+    if bgm_file:
+        b = decode(bgm_file, np)
         b = np.tile(b, int(math.ceil(n / max(1, len(b)))))[:n] * sc_json.get("bgmVolume", 0.16)
         fi = int(SR * 0.8); b[:fi] *= np.linspace(0, 1, fi)
         mix += b * duck

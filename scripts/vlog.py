@@ -16,6 +16,8 @@ TTS: env TTS_API_KEY (wajib, jangan ditulis di file), TTS_URL (default https://t
 """
 import argparse, difflib, hashlib, json, os, re, shutil, subprocess, sys, urllib.request, wave
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import assets
 
 HERE = Path(__file__).resolve().parent
 SKILL = HERE.parent
@@ -71,8 +73,9 @@ def cmd_init(a):
         die(f"{d}/vlog.json sudah ada")
     if a.theme not in THEMES:
         die(f"tema '{a.theme}' tidak ada. Tersedia: {', '.join(THEMES)}")
-    for sub in ("production", "audio", "build", "footage"):
+    for sub in ("production", "audio", "build"):
         (d / sub).mkdir(parents=True, exist_ok=True)
+    assets.scaffold(d, "vlog")
     tpl = SKILL / "templates" / "vlog"
     spec = json.loads((tpl / "vlog.json").read_text())
     spec["voice"] = a.voice
@@ -148,16 +151,7 @@ def cmd_scan(a):
 
 # ------------------------------------------------------------------ TTS
 def find_bgm(d, name):
-    """Cari file backsound: path langsung, folder proyek, lalu BACKSOUND_DIR (rekursif)."""
-    for c in (Path(name).expanduser(), d / name):
-        if c.is_file():
-            return c
-    root = os.environ.get("BACKSOUND_DIR")
-    if root and Path(root).expanduser().is_dir():
-        for c in Path(root).expanduser().rglob("*"):
-            if c.is_file() and c.name.lower() == Path(name).name.lower():
-                return c
-    return None
+    return assets.find_sound(d, name)
 
 
 def tts_conf():
