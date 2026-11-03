@@ -55,6 +55,23 @@ python3 $A render nocap-02-x               # → nocap-02-x/nocap-02-x.mp4
 python3 $A mix nocap-02-x                  # versi tanpa SFX
 ```
 
+## Tipe konten: Vlog narasi (footage perjalanan / aktivitas sendiri)
+Punya banyak klip dari perjalanan atau acara? Skill ini menyusunnya jadi vlog: klip diurutkan per jam rekam, potongan terbaik dipilih, **suaramu sendiri dipertahankan** di momen kamu bicara ke kamera, **narasi TTS** hanya jadi penghubung antar lokasi, suasana asli tetap terdengar, plus SFX halus dan label lokasi.
+- Tema visual lewat `theme` di `vlog.json` (sekarang `clean`; tema motion grafik dsb. ditambahkan sebagai entri baru di `THEMES`)
+- TTS dibuat beberapa take lalu dipilih yang paling jelas & natural; selalu ada versi **tanpa SFX**
+
+Panduan: [`references/vlog-narasi.md`](references/vlog-narasi.md) · Contoh: [`examples/malang-bali-vlog/`](examples/malang-bali-vlog/)
+```bash
+V=~/.claude/skills/motion-reels-agj/scripts/vlog.py
+pip install numpy faster-whisper
+python3 $V init  malang-bali --voice ari-santai
+python3 $V scan  malang-bali --footage ~/klip/        # contact sheet + transkrip suara asli → production/footage.md
+# isi production/story-plan.md + vlog.json (agent yang mengerjakan)
+python3 $V check-tts malang-bali
+python3 $V build malang-bali                           # → malang-bali/malang-bali.mp4 (+ -tanpa-sfx.mp4)
+python3 $V qc    malang-bali
+```
+
 ## Fase 10 — Social Publishing
 Setelah QC video lulus, caption TikTok, Instagram Reels, dan Facebook Reels dibuat oleh skill terpisah [**social-caption-publish**](https://github.com/arigunawanj/social-caption-publish) (netral brand & bahasa). Pasang juga skill itu:
 ```bash
@@ -105,8 +122,11 @@ templates/               creative-brief, concept, storyboard, visual-direction, 
 engine/                  engine.js (kamera, easing, caption, SFX, hook QC) + base.css
 scripts/mr.py            CLI produksi & validasi
 scripts/aroll.py         CLI tipe talking-head + B-roll (HyperFrames)
-references/              naskah-genz.md, motion-kamera.md, engines.md, rubrik-konten.md, talking-head-broll.md
+scripts/vlog.py          CLI tipe vlog narasi (ffmpeg: auto-cut, TTS, SFX, caption)
+references/              naskah-genz.md, motion-kamera.md, engines.md, rubrik-konten.md, talking-head-broll.md, vlog-narasi.md
 examples/website-lemot/  contoh 8 scene lengkap
 examples/nocap-skill-ai-talkinghead/  contoh edit talking-head + B-roll (edit.json)
 templates/aroll/         edit.json, creative-brief, edit-plan untuk tipe talking-head
+examples/malang-bali-vlog/  contoh vlog narasi (vlog.json)
+templates/vlog/          vlog.json, creative-brief, story-plan untuk tipe vlog
 ```

@@ -1,0 +1,306 @@
+{
+ "title": "Malang ke Bali",
+ "subtitle": "pertama kali naik kereta",
+ "voice": "ari-santai",
+ "theme": "clean",
+ "takes": 3,
+ "footageDir": "footage",
+ "scenes": [
+  {
+   "clip": "IMG_0277.MOV",
+   "start": 3.1,
+   "dur": 8.7,
+   "mode": "own",
+   "title": true,
+   "sfx": [
+    [
+     "pop",
+     0.25
+    ]
+   ],
+   "caps": [
+    [
+     0,
+     4.3,
+     "Hari ini aku ada perjalanan, mau ke Bali naik kereta"
+    ],
+    [
+     4.3,
+     7.2,
+     "Ini pengalaman pertama aku mau naik kereta"
+    ],
+    [
+     7.2,
+     8.7,
+     "Kita nyebrang naik kapal"
+    ]
+   ]
+  },
+  {
+   "clip": "IMG_0277.MOV",
+   "start": 21.8,
+   "dur": 2.1,
+   "mode": "own",
+   "caps": [
+    [
+     0.1,
+     2.0,
+     "Oke, langsung aja kita berangkat"
+    ]
+   ]
+  },
+  {
+   "clip": "IMG_0280.MOV",
+   "start": 0.0,
+   "dur": 2.6,
+   "mode": "none",
+   "label": "Stasiun Malang · 07.26",
+   "sfx": [
+    [
+     "chime",
+     0.1
+    ]
+   ],
+   "vo": "Jam tujuh lewat, udah sampai Stasiun Malang. Masih pagi banget nih."
+  },
+  {
+   "clip": "IMG_0282.MOV",
+   "start": 1.0,
+   "dur": 3.6,
+   "mode": "amb",
+   "vol": 0.3,
+   "vo": "Lewat jembatan, keretanya udah kelihatan nunggu di bawah."
+  },
+  {
+   "clip": "IMG_0286.MOV",
+   "start": 4.5,
+   "dur": 3.4,
+   "mode": "amb",
+   "vol": 0.22,
+   "label": "Di kereta · 08.31",
+   "sfx": [
+    [
+     "whoosh",
+     -0.25
+    ]
+   ],
+   "vo": "Perjalanan panjangnya dimulai. Laptop tetap kebuka dong, kerja sambil lihat sawah."
+  },
+  {
+   "clip": "IMG_0288.MOV",
+   "start": 0.3,
+   "dur": 3.0,
+   "mode": "amb",
+   "vol": 0.9
+  },
+  {
+   "clip": "IMG_0288.MOV",
+   "start": 7.0,
+   "dur": 2.8,
+   "mode": "amb",
+   "vol": 0.25,
+   "vo": "Berjam-jam di atas rel, pemandangan lewat satu-satu."
+  },
+  {
+   "clip": "IMG_0289.MOV",
+   "start": 0.0,
+   "dur": 1.8,
+   "mode": "none"
+  },
+  {
+   "clip": "IMG_0297.MOV",
+   "start": 15.5,
+   "dur": 3.0,
+   "mode": "none",
+   "label": "Stasiun Ketapang · 14.49",
+   "sfx": [
+    [
+     "whoosh",
+     -0.25
+    ]
+   ],
+   "vo": "Hampir jam tiga sore, dan akhirnya sampai di Stasiun Ketapang!"
+  },
+  {
+   "clip": "IMG_0301.MOV",
+   "start": 9.5,
+   "dur": 2.2,
+   "mode": "amb",
+   "vol": 0.5
+  },
+  {
+   "clip": "IMG_0305.MOV",
+   "start": 1.0,
+   "dur": 3.6,
+   "mode": "amb",
+   "vol": 0.9
+  },
+  {
+   "clip": "IMG_0306.MOV",
+   "start": 0.0,
+   "dur": 7.2,
+   "mode": "own",
+   "caps": [
+    [
+     0,
+     7.2,
+     "Di sini cuacanya panas ya, bener-bener panas banget di sini"
+    ]
+   ]
+  },
+  {
+   "clip": "IMG_0306.MOV",
+   "start": 14.1,
+   "dur": 7.0,
+   "mode": "own",
+   "zoom": 1.14,
+   "caps": [
+    [
+     0,
+     4.0,
+     "Sesekali juga sih, biasanya naik pesawat"
+    ],
+    [
+     4.0,
+     7.0,
+     "sekarang mau naik kereta, biar tahu rasanya gimana"
+    ]
+   ]
+  },
+  {
+   "clip": "IMG_0309.MOV",
+   "start": 17.0,
+   "dur": 2.8,
+   "mode": "amb",
+   "vol": 0.12,
+   "vo": "Dari stasiun, lanjut ke loket buat urus tiket kapalnya."
+  },
+  {
+   "clip": "IMG_0313.MOV",
+   "start": 0.2,
+   "dur": 5.0,
+   "mode": "own",
+   "label": "Pelabuhan Ketapang · 15.08",
+   "sfx": [
+    [
+     "whoosh",
+     -0.25
+    ]
+   ],
+   "caps": [
+    [
+     0,
+     5.0,
+     "Ini udah sampai di pelabuhan, tadi udah check-in juga"
+    ]
+   ]
+  },
+  {
+   "clip": "IMG_0314.MOV",
+   "start": 5.2,
+   "dur": 2.7,
+   "mode": "own",
+   "caps": [
+    [
+     0,
+     2.7,
+     "Sekarang kita tinggal berangkat ke kapal"
+    ]
+   ]
+  },
+  {
+   "clip": "IMG_0315.MOV",
+   "start": 1.0,
+   "dur": 3.4,
+   "mode": "amb",
+   "vol": 0.8,
+   "sfx": [
+    [
+     "horn",
+     0.4
+    ]
+   ]
+  },
+  {
+   "clip": "IMG_0317.MOV",
+   "start": 0.5,
+   "dur": 4.2,
+   "mode": "amb",
+   "vol": 0.5,
+   "label": "Selat Bali · 15.23",
+   "sfx": [
+    [
+     "whoosh",
+     -0.25
+    ]
+   ],
+   "vo": "Nyebrang Selat Bali naik kapal. Anginnya adem, lautnya biru banget."
+  },
+  {
+   "clip": "IMG_0320.MOV",
+   "start": 43.2,
+   "dur": 8.6,
+   "mode": "own",
+   "caps": [
+    [
+     0.1,
+     2.1,
+     "Jadi aku langsung check-in"
+    ],
+    [
+     2.1,
+     4.1,
+     "Nanti langsung scan barcode"
+    ],
+    [
+     4.1,
+     6.1,
+     "Langsung masuk di sini"
+    ],
+    [
+     6.1,
+     8.4,
+     "Langsung berangkat"
+    ]
+   ]
+  },
+  {
+   "clip": "IMG_0323.MOV",
+   "start": 10.5,
+   "dur": 4.6,
+   "mode": "amb",
+   "vol": 0.6,
+   "vo": "Langitnya lagi dramatis banget. Kayak dikasih bonus pemandangan."
+  },
+  {
+   "clip": "IMG_0324.MOV",
+   "start": 1.5,
+   "dur": 4.0,
+   "mode": "amb",
+   "vol": 0.5,
+   "label": "Pelabuhan Gilimanuk · 16.21",
+   "sfx": [
+    [
+     "whoosh",
+     -0.25
+    ]
+   ],
+   "vo": "Dan... Pelabuhan Gilimanuk! Berarti udah sampai Bali dong."
+  },
+  {
+   "clip": "IMG_0325.MOV",
+   "start": 1.0,
+   "dur": 6.2,
+   "mode": "amb",
+   "vol": 0.4,
+   "label": "Bali · 16.22",
+   "sfx": [
+    [
+     "final",
+     0.15
+    ]
+   ],
+   "vo": "Sembilan jam lebih dari rumah sampai Bali. Capek? Iya. Seru? Banget."
+  }
+ ]
+}

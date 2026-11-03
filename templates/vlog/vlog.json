@@ -1,0 +1,16 @@
+{
+ "_catatan": "Satu sumber kebenaran vlog. start/dur/caps = detik di klip asli. mode: own (suara asli + caption), amb (suasana, vol 0-1), none (senyap). vo = narasi TTS. sfx = [[nama, offset detik]] nama: pop chime whoosh horn final. label = lokasi kecil di atas. title: true = judul besar (scene pertama saja).",
+ "title": "Judul Besar",
+ "subtitle": "baris kecil di bawah judul",
+ "voice": "ari-santai",
+ "theme": "clean",
+ "takes": 3,
+ "footageDir": "footage",
+ "scenes": [
+  {"clip": "IMG_0001.MOV", "start": 0.0, "dur": 6.0, "mode": "own", "title": true, "sfx": [["pop", 0.25]],
+   "caps": [[0, 3.0, "Kalimat asli yang diucapkan, sudah dikoreksi"], [3.0, 6.0, "Kalimat berikutnya"]]},
+  {"clip": "IMG_0002.MOV", "start": 1.0, "dur": 3.0, "mode": "amb", "vol": 0.3, "label": "Lokasi · 07.30", "sfx": [["whoosh", -0.25]],
+   "vo": "Narasi pendek, santai, satu napas."},
+  {"clip": "IMG_0003.MOV", "start": 0.0, "dur": 3.0, "mode": "amb", "vol": 0.9}
+ ]
+}

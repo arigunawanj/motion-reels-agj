@@ -1,6 +1,6 @@
 ---
 name: motion-reels-agj
-description: Produksi video motion graphics TikTok/Instagram Reels/Shorts (9:16, 1080x1920, 60fps) secara profesional dengan workflow studio — briefing, riset, konsep, naskah Gen Z + analogi, storyboard, TTS, kamera bergerak, preview, render final, dan QC otomatis. Juga mengedit rekaman talking-head milik user (footage sendiri + B-roll + motion grafik + monolog, gaya editorial gelap). Pakai saat user minta video pendek, reels, tiktok, motion graphic, explainer, minta "edit video ini" dengan rekaman dirinya bicara, atau revisi scene/VO dari video yang sudah dibuat.
+description: Produksi video motion graphics TikTok/Instagram Reels/Shorts (9:16, 1080x1920, 60fps) secara profesional dengan workflow studio — briefing, riset, konsep, naskah Gen Z + analogi, storyboard, TTS, kamera bergerak, preview, render final, dan QC otomatis. Juga mengedit rekaman talking-head milik user (footage sendiri + B-roll + motion grafik + monolog, gaya editorial gelap). Juga menyusun vlog dari banyak klip footage sendiri (urut jam rekam, auto-cut angle terbaik, narasi VO TTS + suara asli + SFX halus, sistem tema). Pakai saat user minta video pendek, reels, tiktok, motion graphic, explainer, "edit video ini" dengan rekaman dirinya bicara, "buatin vlog dari klip ini", atau revisi scene/VO dari video yang sudah dibuat.
 ---
 
 # Motion Reels — Universal Short-Form Motion Graphics
@@ -21,9 +21,12 @@ Kebutuhan: python3, ffmpeg, `pip install numpy playwright && python3 -m playwrig
 |---|---|---|
 | Topik/ide, tanpa rekaman ("bikin reels soal X") | **Motion graphic + VO TTS** | Fase 1–10 di bawah (`mr.py`, desain AGJ terang) |
 | **Rekaman dirinya bicara ke kamera** + minta diedit ("edit ini", "kasih B-roll", "bikin kayak video referensi ini") | **Talking-head + B-roll** | **Baca `references/talking-head-broll.md` dulu**, produksi lewat `scripts/aroll.py`, contoh `examples/nocap-skill-ai-talkinghead/` |
+| **Banyak klip** perjalanan/aktivitas/event + minta dijadikan vlog ("auto cut angle yang bagus", "kayak vlog liburan", "kasih VO narasi") | **Vlog narasi** (tema `clean`; tema lain, mis. motion grafik, ditambah bertahap) | **Baca `references/vlog-narasi.md` dulu**, produksi lewat `scripts/vlog.py`, contoh `examples/malang-bali-vlog/` |
 
 Talking-head + B-roll = footage sendiri jadi A-roll, ditambah gambar lain (foto stok Pexels), motion grafik, dan monolog asli (tanpa TTS). Gayanya **editorial gelap** (kinetic type sans + *serif italic* diketik per huruf, jump-cut, light-leak, kartu judul hitam + coretan merah, judul glitch, diagram arang + thumbnail neon hijau), bukan tema AGJ terang. Gerbang G1/G3/G4, rubrik, QC, dan Fase 10 tetap berlaku; langkah teknisnya ada di reference tersebut.
 Butuh tambahan: node (`npx hyperframes`), `pip install faster-whisper`.
+
+Vlog narasi = klip-klip sendiri disusun jadi cerita per jam rekam. Suara dibagi tiga: **suara asli user dipertahankan** di momen dia bicara ke kamera (caption hasil koreksi), **narasi TTS hanya penghubung** antar lokasi (≤ 12 kata, gaya ngobrol), dan **suasana asli** dibiarkan terdengar di shot tanpa narasi. Aturan inti: (1) `vlog.py scan` dulu, **lihat semua contact sheet** dan baca ulang transkrip (Whisper sering salah dengar) sebelum menulis cerita; (2) hanya fakta yang terlihat di footage atau diucapkan user, tebakan masuk daftar konfirmasi di `story-plan.md`; (3) SFX sintetis & sangat halus, selalu ada versi `-tanpa-sfx.mp4`; (4) TTS memakai `TTS_API_KEY`/`TTS_URL` yang sama dengan `mr.py` (jangan ganti provider tanpa izin); (5) footage tambahan datang belakangan → scan ulang, sisipkan urut jam rekam, `build` lagi; (6) durasi > 90 dtk → tawarkan versi ringkas/2 part. Gaya visual lewat `theme` di `vlog.json` (sekarang `clean`; tema baru = entri baru di `THEMES`, jangan dibuat tanpa diminta). Gerbang G1/G3/G4, `vlog.py qc`, dan Fase 10 tetap berlaku. Butuh tambahan: `pip install numpy faster-whisper`, font Poppins.
 
 
 ## ★ Desain default: AGJ Labs Brand (WAJIB kecuali user minta ganti)
@@ -169,6 +172,9 @@ Serahkan: video, naskah final, folder `publishing/`, ringkasan QC video & captio
 | Revisi caption / hashtag | lewat skill `social-caption-publish` (edit `publishing/` → `scp.py check` → approval ulang) |
 | Talking-head: ganti teks/B-roll/diagram | edit `edit.json` → `aroll.py build` → `snap` → `render` (stock ulang kalau foto baru) |
 | Talking-head: SFX kurang/berisik | ubah `sfx` di `edit.json` (atau `mix` untuk versi tanpa SFX) — default sudah pelan |
+| Vlog: ganti narasi / urutan / potongan klip | edit `vlog.json` → `vlog.py build` (VO yang teksnya tidak berubah dipakai dari cache `audio/`) → `qc` |
+| Vlog: ada footage tambahan | `vlog.py scan` folder baru → sisipkan scene urut jam rekam di `vlog.json` → `build` (uji cepat: `--scenes a-b --takes 1`) |
+| Vlog: TTS kurang natural / terpotong | tulis ulang kalimat lebih pendek ala ngobrol, `--takes 5`, cek `production/build-report.md` (kemiripan < 0.85), atau ganti voice di `vlog.json` |
 | Ganti gaya visual global (override desain AGJ) | hanya bila user minta → visual-direction.md bagian "Override desain" + style.css → preview ulang |
 Selalu tunjukkan diff singkat ke user dan, di Studio Mode, minta approval ulang untuk gerbang yang terdampak.
 
