@@ -1,0 +1,69 @@
+{
+ "footage": "",
+ "rubrik": "",
+ "duration": null,
+ "fixes": {
+  "EI": "AI"
+ },
+ "framing": [
+  [
+   0,
+   3,
+   "wide"
+  ],
+  [
+   3,
+   5,
+   "close"
+  ]
+ ],
+ "kinetic": [
+  {
+   "id": "k1",
+   "lines": [
+    [
+     "s",
+     "Kalimat sans tebal",
+     0.5,
+     1.6
+    ],
+    [
+     "i",
+     "frasa serif italic",
+     1.7,
+     2.6
+    ]
+   ],
+   "out": 2.9
+  }
+ ],
+ "broll": [
+  {
+   "id": "br-1",
+   "start": 5.0,
+   "end": 8.0,
+   "img": "contoh",
+   "pexels": 8088495,
+   "pos": 50,
+   "lines": [
+    [
+     "s",
+     "Teks di atas B-roll",
+     5.2,
+     6.0
+    ],
+    [
+     "i",
+     "penekanan",
+     6.2,
+     7.0
+    ]
+   ],
+   "chips": [],
+   "keys": []
+  }
+ ],
+ "titles": [],
+ "glitch": [],
+ "diagrams": []
+}

@@ -1,6 +1,6 @@
 ---
 name: motion-reels-agj
-description: Produksi video motion graphics TikTok/Instagram Reels/Shorts (9:16, 1080x1920, 60fps) secara profesional dengan workflow studio — briefing, riset, konsep, naskah Gen Z + analogi, storyboard, TTS, kamera bergerak, preview, render final, dan QC otomatis. Pakai saat user minta video pendek, reels, tiktok, motion graphic, explainer, atau revisi scene/VO dari video yang sudah dibuat.
+description: Produksi video motion graphics TikTok/Instagram Reels/Shorts (9:16, 1080x1920, 60fps) secara profesional dengan workflow studio — briefing, riset, konsep, naskah Gen Z + analogi, storyboard, TTS, kamera bergerak, preview, render final, dan QC otomatis. Juga mengedit rekaman talking-head milik user (footage sendiri + B-roll + motion grafik + monolog, gaya editorial gelap). Pakai saat user minta video pendek, reels, tiktok, motion graphic, explainer, minta "edit video ini" dengan rekaman dirinya bicara, atau revisi scene/VO dari video yang sudah dibuat.
 ---
 
 # Motion Reels — Universal Short-Form Motion Graphics
@@ -15,6 +15,15 @@ Briefing ─▶ Research & Concept ─▶ Script & Storyboard ─▶ Finalisasi 
 
 Semua perintah di bawah: `python3 <skill>/scripts/mr.py <cmd> <project>` (selanjutnya ditulis `mr`).
 Kebutuhan: python3, ffmpeg, `pip install numpy playwright && python3 -m playwright install chromium`.
+
+## ★ Pilih tipe konten dulu
+| User mengirim / minta | Tipe | Jalur |
+|---|---|---|
+| Topik/ide, tanpa rekaman ("bikin reels soal X") | **Motion graphic + VO TTS** | Fase 1–10 di bawah (`mr.py`, desain AGJ terang) |
+| **Rekaman dirinya bicara ke kamera** + minta diedit ("edit ini", "kasih B-roll", "bikin kayak video referensi ini") | **Talking-head + B-roll** | **Baca `references/talking-head-broll.md` dulu**, produksi lewat `scripts/aroll.py`, contoh `examples/nocap-skill-ai-talkinghead/` |
+
+Talking-head + B-roll = footage sendiri jadi A-roll, ditambah gambar lain (foto stok Pexels), motion grafik, dan monolog asli (tanpa TTS). Gayanya **editorial gelap** (kinetic type sans + *serif italic* diketik per huruf, jump-cut, light-leak, kartu judul hitam + coretan merah, judul glitch, diagram arang + thumbnail neon hijau), bukan tema AGJ terang. Gerbang G1/G3/G4, rubrik, QC, dan Fase 10 tetap berlaku; langkah teknisnya ada di reference tersebut.
+Butuh tambahan: node (`npx hyperframes`), `pip install faster-whisper`.
 
 
 ## ★ Desain default: AGJ Labs Brand (WAJIB kecuali user minta ganti)
@@ -158,6 +167,8 @@ Serahkan: video, naskah final, folder `publishing/`, ringkasan QC video & captio
 | Ubah animasi/visual 1 scene | edit `E.scene` di scenes.js / style.css → stills → render (hanya scene itu + tetangga) |
 | Tambah/hapus scene | update storyboard.md + script.json + scenes.js (id & urutan sama) → tts → preview |
 | Revisi caption / hashtag | lewat skill `social-caption-publish` (edit `publishing/` → `scp.py check` → approval ulang) |
+| Talking-head: ganti teks/B-roll/diagram | edit `edit.json` → `aroll.py build` → `snap` → `render` (stock ulang kalau foto baru) |
+| Talking-head: SFX kurang/berisik | ubah `sfx` di `edit.json` (atau `mix` untuk versi tanpa SFX) — default sudah pelan |
 | Ganti gaya visual global (override desain AGJ) | hanya bila user minta → visual-direction.md bagian "Override desain" + style.css → preview ulang |
 Selalu tunjukkan diff singkat ke user dan, di Studio Mode, minta approval ulang untuk gerbang yang terdampak.
 
