@@ -39,7 +39,7 @@ Isi `"bgm": {"file": "nama.mp3", "volume": 0.30}` di `vlog.json`; file dicari le
 ## SFX
 - Sintetis (tanpa aset berhak cipta): `pop` judul, `chime` stasiun, `whoosh` pindah bab (offset -0.25 supaya mendahului cut), `horn` klakson kapal, `final` tiba di tujuan.
 - Level sangat halus di `THEMES[...]["sfx_gain"]`. **Selalu serahkan juga versi tanpa SFX** (`<dir>-tanpa-sfx.mp4`) supaya tim bisa menambah sound trending di aplikasi.
-- Tanpa musik kecuali file milik user.
+- Musik hanya dari folder backsound kantor / file milik user (lihat Backsound di atas); tanpa `bgm` = tanpa musik.
 
 ## Workflow (gerbang tetap berlaku)
 | Fase | Langkah |
