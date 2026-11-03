@@ -33,6 +33,9 @@ Durasi: 45–60 dtk ideal; vlog panjang (> 90 dtk) tawarkan versi ringkas atau p
 - `build` membuat **N take (default 3)** per kalimat dan memilih yang paling mirip teks (Whisper) dengan tempo paling natural (~3 kata/dtk). Lihat `production/build-report.md`: kemiripan < 0.85 → dengarkan, ganti kalimat, atau `--takes 5`.
 - Voice per video disebut user ("voice suci"); tanpa instruksi pakai `ari-santai`. Daftar voice: `GET /v1/voices`.
 
+## Backsound (opsional)
+Isi `"bgm": {"file": "nama.mp3", "volume": 0.30}` di `vlog.json`; file dicari lewat `BACKSOUND_DIR`. Daftar lagu kantor + saran per mood: `references/backsound.md`. Musik ducking otomatis di bawah suara dan hanya masuk ke versi utama (bukan `-tanpa-sfx.mp4`).
+
 ## SFX
 - Sintetis (tanpa aset berhak cipta): `pop` judul, `chime` stasiun, `whoosh` pindah bab (offset -0.25 supaya mendahului cut), `horn` klakson kapal, `final` tiba di tujuan.
 - Level sangat halus di `THEMES[...]["sfx_gain"]`. **Selalu serahkan juga versi tanpa SFX** (`<dir>-tanpa-sfx.mp4`) supaya tim bisa menambah sound trending di aplikasi.

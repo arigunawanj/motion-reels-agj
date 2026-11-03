@@ -5,6 +5,7 @@
  "voice": "ari-santai",
  "theme": "clean",
  "takes": 3,
+ "bgm": {"file": "Progressive Progress- Howard Harper-Barnes (Vlog No Copyright Music).mp3", "volume": 0.30},
  "footageDir": "footage",
  "scenes": [
   {"clip": "IMG_0001.MOV", "start": 0.0, "dur": 6.0, "mode": "own", "title": true, "sfx": [["pop", 0.25]],

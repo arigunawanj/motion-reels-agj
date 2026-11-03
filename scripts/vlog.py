@@ -147,6 +147,19 @@ def cmd_scan(a):
 
 
 # ------------------------------------------------------------------ TTS
+def find_bgm(d, name):
+    """Cari file backsound: path langsung, folder proyek, lalu BACKSOUND_DIR (rekursif)."""
+    for c in (Path(name).expanduser(), d / name):
+        if c.is_file():
+            return c
+    root = os.environ.get("BACKSOUND_DIR")
+    if root and Path(root).expanduser().is_dir():
+        for c in Path(root).expanduser().rglob("*"):
+            if c.is_file() and c.name.lower() == Path(name).name.lower():
+                return c
+    return None
+
+
 def tts_conf():
     key = os.environ.get("TTS_API_KEY", "")
     return os.environ.get("TTS_URL", DEFAULT_URL), key
@@ -386,7 +399,13 @@ def cmd_build(a):
     run(["ffmpeg", "-v", "error", "-y", "-i", str(base), "-vf", vfilter, "-c:v", "libx264", "-preset", "medium",
          "-crf", str(a.crf), "-maxrate", "6M", "-bufsize", "12M", "-pix_fmt", "yuv420p", "-an", str(vid)])
 
-    # ---- audio: suara scene + narasi + SFX → dua versi (dengan & tanpa SFX)
+    # ---- backsound (opsional): "bgm": {"file": "nama.mp3", "volume": 0.12} — dicari di BACKSOUND_DIR / footage / path
+    bgm_cfg = spec.get("bgm") or {}
+    bgm_path = find_bgm(d, bgm_cfg["file"]) if bgm_cfg.get("file") else None
+    if bgm_cfg.get("file") and not bgm_path:
+        print(f"! backsound '{bgm_cfg['file']}' tidak ditemukan (set BACKSOUND_DIR atau beri path penuh) — build tanpa musik")
+
+    # ---- audio: suara scene + narasi + SFX (+ backsound) → dua versi (dengan & tanpa SFX/musik)
     def mix(with_sfx, dest):
         inputs, filt, labs = [], [], []
         def add(path, t_abs, gain):
@@ -399,8 +418,19 @@ def cmd_build(a):
             if with_sfx:
                 for name, off in sc.get("sfx", []):
                     add(sfxdir / f"{name}.wav", t0 + off, th["sfx_gain"].get(name, 0.25))
-        chain = f"[0:a]{''.join(labs)}amix=inputs={len(labs) + 1}:normalize=0:duration=first,alimiter=limit=0.95,loudnorm=I={th['loudness']}:TP=-1.5:LRA=9[aout]" if labs \
-            else f"[0:a]loudnorm=I={th['loudness']}:TP=-1.5:LRA=9[aout]"
+        mixer = (f"[0:a]{''.join(labs)}amix=inputs={len(labs) + 1}:normalize=0:duration=first,alimiter=limit=0.95" if labs
+                 else "[0:a]anull")
+        tail = f"loudnorm=I={th['loudness']}:TP=-1.5:LRA=9[aout]"
+        if with_sfx and bgm_path:
+            k = len(labs) + 1; inputs.extend(["-stream_loop", "-1", "-i", str(bgm_path)])
+            bv = float(bgm_cfg.get("volume", 0.30)); fo = max(0.0, total - 1.5)
+            filt.append(mixer + "[m];[m]asplit=2[m1][m2]")
+            filt.append(f"[{k}:a]aresample=44100,aformat=channel_layouts=stereo,loudnorm=I=-18:TP=-2:LRA=11,aresample=44100,volume={bv},afade=t=in:d=1.0,"
+                        f"afade=t=out:st={fo:.2f}:d=1.5,atrim=0:{total:.2f}[bg]")
+            filt.append("[bg][m2]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=500[bgd]")
+            chain = f"[m1][bgd]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.95,{tail}"
+        else:
+            chain = mixer + "," + tail
         filt.append(chain)
         wav = d / "build" / ("mix_sfx.m4a" if with_sfx else "mix_nosfx.m4a")
         run(["ffmpeg", "-v", "error", "-y", "-i", str(base), *inputs, "-filter_complex", ";".join(filt), "-map", "[aout]", "-vn",
@@ -418,7 +448,7 @@ def cmd_build(a):
     if low:
         rep += ["", "**VO kemiripan < 0.85 (dengarkan ulang / ganti kalimat / naikkan --takes):** " + ", ".join(str(r[0]) for r in low)]
     (d / "production" / "build-report.md").write_text("\n".join(rep) + "\n")
-    print(f"✓ {final}  ({total:.0f} dtk)\n✓ {d / (d.name + '-tanpa-sfx.mp4')}  (untuk menambah sound trending di aplikasi)\n→ lanjut: qc")
+    print(f"✓ {final}  ({total:.0f} dtk)\n✓ {d / (d.name + '-tanpa-sfx.mp4')}  (tanpa SFX & backsound, untuk menambah sound trending di aplikasi)\n→ lanjut: qc")
 
 
 # ------------------------------------------------------------------ qc
