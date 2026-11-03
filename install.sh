@@ -25,3 +25,6 @@ command -v ffmpeg >/dev/null && echo "  ✓ ffmpeg" || echo "  ! ffmpeg belum ad
 python3 -c "import numpy" 2>/dev/null && echo "  ✓ numpy" || echo "  ! pip install numpy"
 python3 -c "import playwright" 2>/dev/null && echo "  ✓ playwright" || echo "  ! pip install playwright && python3 -m playwright install chromium"
 [ -n "$TTS_API_KEY" ] && echo "  ✓ TTS_API_KEY ter-set" || echo "  ! export TTS_API_KEY=...  (simpan di ~/.zshrc, jangan di repo)"
+echo "Tipe talking-head + B-roll (opsional):"
+command -v npx >/dev/null && echo "  ✓ node/npx (hyperframes)" || echo "  ! install node (npx hyperframes) untuk edit footage sendiri"
+python3 -c "import faster_whisper" 2>/dev/null && echo "  ✓ faster-whisper" || echo "  ! pip install faster-whisper (transkrip per kata)"

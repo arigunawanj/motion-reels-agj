@@ -1,0 +1,586 @@
+{
+ "footage": "IMG_5731.mov",
+ "rubrik": "nocap",
+ "duration": 71.1,
+ "fixes": {
+  "EI": "AI",
+  "CCPT": "ChatGPT",
+  "prom": "prompt",
+  "berplikir": "berpikir",
+  "menter": "Menurut",
+  "dipelacari": "dipelajari",
+  "ambil": "hampir",
+  "pake": "pakai"
+ },
+ "framing": [
+  [
+   0,
+   2.9,
+   "wide"
+  ],
+  [
+   2.9,
+   4.45,
+   "close"
+  ],
+  [
+   18.8,
+   20.2,
+   "close"
+  ],
+  [
+   20.2,
+   22.15,
+   "wide"
+  ],
+  [
+   37.35,
+   40.75,
+   "close"
+  ],
+  [
+   48.95,
+   51.6,
+   "wide"
+  ],
+  [
+   51.6,
+   53.35,
+   "close"
+  ],
+  [
+   62.25,
+   65.15,
+   "close"
+  ],
+  [
+   65.15,
+   68.7,
+   "wide"
+  ],
+  [
+   68.7,
+   71.1,
+   "close"
+  ]
+ ],
+ "kinetic": [
+  {
+   "id": "k1",
+   "lines": [
+    [
+     "s",
+     "Sekarang semua orang",
+     0.55,
+     1.75
+    ],
+    [
+     "i",
+     "udah pakai AI",
+     1.85,
+     2.6
+    ]
+   ],
+   "out": 2.88
+  },
+  {
+   "id": "k2",
+   "lines": [
+    [
+     "s",
+     "Tapi pertanyaannya,",
+     2.95,
+     3.9
+    ]
+   ],
+   "out": 4.43
+  },
+  {
+   "id": "k3",
+   "lines": [
+    [
+     "s",
+     "Nah, ini yang sering",
+     18.95,
+     19.75
+    ],
+    [
+     "i",
+     "dilupain orang-orang",
+     20.25,
+     21.1
+    ]
+   ],
+   "out": 22.13
+  },
+  {
+   "id": "k4",
+   "lines": [
+    [
+     "s",
+     "Tapi bukan berarti",
+     37.4,
+     38.0
+    ],
+    [
+     "s",
+     "semua keputusan",
+     38.15,
+     38.8
+    ],
+    [
+     "i",
+     "diserahin ke AI",
+     39.15,
+     39.95
+    ]
+   ],
+   "strike": 40.05,
+   "out": 40.73
+  },
+  {
+   "id": "k5",
+   "lines": [
+    [
+     "s",
+     "Skill paling penting di AI",
+     50.15,
+     51.4
+    ],
+    [
+     "i",
+     "bukan sekadar tools",
+     51.7,
+     53.0
+    ]
+   ],
+   "out": 53.33
+  },
+  {
+   "id": "k6",
+   "lines": [
+    [
+     "s",
+     "Tapi belum tentu",
+     62.3,
+     62.9
+    ],
+    [
+     "i",
+     "bisa memanfaatkan",
+     63.4,
+     64.2
+    ],
+    [
+     "s",
+     "dengan baik",
+     64.3,
+     64.7
+    ]
+   ],
+   "out": 65.13
+  },
+  {
+   "id": "k7",
+   "lines": [
+    [
+     "s",
+     "Menurut kalian,",
+     65.33,
+     66.05
+    ],
+    [
+     "i",
+     "skill AI wajib dipelajari",
+     66.37,
+     68.2
+    ],
+    [
+     "s",
+     "semua orang?",
+     68.4,
+     68.9
+    ]
+   ]
+  }
+ ],
+ "broll": [
+  {
+   "id": "br-crowd1",
+   "start": 4.45,
+   "end": 6.95,
+   "img": "crowd1",
+   "pexels": 8088495,
+   "pos": 50,
+   "lines": [
+    [
+     "s",
+     "Emang semua orang",
+     4.55,
+     5.3
+    ],
+    [
+     "i",
+     "udah jago AI?",
+     5.9,
+     6.6
+    ]
+   ],
+   "chips": [
+    [
+     "Tanya AI…",
+     "?",
+     90,
+     360,
+     4.65
+    ],
+    [
+     "Jawaban siap",
+     "✦",
+     560,
+     520,
+     5.0
+    ],
+    [
+     "Copy",
+     "⧉",
+     170,
+     1380,
+     5.35
+    ]
+   ]
+  },
+  {
+   "id": "br-phone",
+   "start": 7.85,
+   "end": 11.6,
+   "img": "phone",
+   "pexels": 15940005,
+   "pos": 4,
+   "kb": [
+    1.08,
+    1.2
+   ],
+   "pan": [
+    20,
+    -20
+   ],
+   "lines": [
+    [
+     "s",
+     "Banyak orang pakai ChatGPT",
+     8.7,
+     9.9
+    ],
+    [
+     "i",
+     "cuma buat nanya",
+     10.05,
+     10.9
+    ]
+   ]
+  },
+  {
+   "id": "br-keys",
+   "start": 11.6,
+   "end": 13.95,
+   "img": "keys",
+   "pexels": 31421513,
+   "pos": 62,
+   "kb": [
+    1.1,
+    1.22
+   ],
+   "pan": [
+    -20,
+    20
+   ],
+   "lines": [
+    [
+     "s",
+     "Terus jawabannya",
+     11.85,
+     12.4
+    ],
+    [
+     "i",
+     "langsung copy-paste",
+     12.45,
+     13.2
+    ]
+   ],
+   "keys": [
+    [
+     "Ctrl + C",
+     150,
+     470,
+     12.73
+    ],
+    [
+     "Ctrl + V",
+     560,
+     600,
+     12.9
+    ]
+   ]
+  },
+  {
+   "id": "br-confused",
+   "start": 13.95,
+   "end": 18.8,
+   "img": "confused",
+   "pexels": 6517090,
+   "pos": 60,
+   "lines": [
+    [
+     "s",
+     "Padahal jawabannya",
+     14.05,
+     14.95
+    ],
+    [
+     "c",
+     "belum tentu benar",
+     15.3,
+     15.95
+    ],
+    [
+     "c",
+     "belum tentu sesuai",
+     16.75,
+     17.45
+    ],
+    [
+     "c",
+     "kebutuhan",
+     17.5,
+     17.95
+    ]
+   ]
+  },
+  {
+   "id": "br-hands",
+   "start": 33.75,
+   "end": 37.35,
+   "img": "hands",
+   "pexels": 8386422,
+   "pos": 52,
+   "kb": [
+    1.0,
+    1.1
+   ],
+   "pan": [
+    0,
+    0
+   ],
+   "lines": [
+    [
+     "s",
+     "AI bisa bantu mikir,",
+     34.0,
+     35.8
+    ],
+    [
+     "i",
+     "bisa lebih cepat",
+     36.3,
+     37.0
+    ]
+   ]
+  },
+  {
+   "id": "br-redroom",
+   "start": 40.75,
+   "end": 45.0,
+   "img": "redroom",
+   "pexels": 6497924,
+   "pos": 45,
+   "grade": "red",
+   "lines": [
+    [
+     "s",
+     "Kalau kita sendiri",
+     40.9,
+     41.6
+    ],
+    [
+     "i",
+     "nggak ngerti",
+     41.7,
+     42.3
+    ],
+    [
+     "s",
+     "apa yang lagi dikerjain",
+     43.6,
+     44.4
+    ]
+   ]
+  },
+  {
+   "id": "br-night",
+   "start": 45.0,
+   "end": 48.95,
+   "img": "night",
+   "pexels": 4327409,
+   "pos": 45,
+   "kb": [
+    1.06,
+    1.18
+   ],
+   "pan": [
+    -10,
+    10
+   ],
+   "lines": [
+    [
+     "s",
+     "Ya susah buat tahu",
+     45.1,
+     46.6
+    ],
+    [
+     "c",
+     "hasil AI",
+     46.75,
+     47.3
+    ],
+    [
+     "c",
+     "bener atau salah",
+     47.45,
+     48.3
+    ]
+   ]
+  },
+  {
+   "id": "br-crowd2",
+   "start": 59.55,
+   "end": 62.25,
+   "img": "crowd2",
+   "pexels": 8088451,
+   "pos": 50,
+   "lines": [
+    [
+     "s",
+     "Semua orang bisa",
+     59.75,
+     60.9
+    ],
+    [
+     "i",
+     "akses AI",
+     61.0,
+     61.6
+    ]
+   ],
+   "chips": [
+    [
+     "AI",
+     "✦",
+     600,
+     380,
+     59.8
+    ],
+    [
+     "Prompt baru",
+     "?",
+     110,
+     560,
+     60.15
+    ]
+   ]
+  }
+ ],
+ "titles": [
+  {
+   "id": "tc",
+   "start": 6.95,
+   "end": 7.85,
+   "top": "Pakai AI",
+   "bottom": "Jago AI",
+   "strike": 7.43
+  }
+ ],
+ "glitch": [
+  {
+   "id": "gt",
+   "start": 22.15,
+   "end": 23.5,
+   "text": "SKILL AI",
+   "img": "darkkeys",
+   "pexels": 5926370
+  }
+ ],
+ "diagrams": [
+  {
+   "id": "dg1",
+   "type": "flow",
+   "start": 23.5,
+   "end": 33.75,
+   "chip": "Skill AI",
+   "chip_t": 23.6,
+   "struck": {
+    "pre": "bukan cuma",
+    "pre_t": 23.95,
+    "text": "bikin prompt",
+    "t": 25.45,
+    "strike_t": 26.0,
+    "post": "tapi",
+    "post_t": 26.15
+   },
+   "nodes": [
+    [
+     "Ngerti masalah",
+     27.93
+    ],
+    [
+     "Ngerti konteks",
+     29.91
+    ],
+    [
+     "Evaluasi hasil",
+     31.43
+    ]
+   ],
+   "loop_t": 32.4
+  },
+  {
+   "id": "dg2",
+   "type": "stairs",
+   "start": 53.35,
+   "end": 59.55,
+   "head": [
+    [
+     "s",
+     "Skill AI",
+     53.5,
+     53.85
+    ],
+    [
+     "i",
+     "yang paling penting:",
+     53.9,
+     54.4
+    ]
+   ],
+   "steps": [
+    [
+     "bulb",
+     "Berpikir<br>kritis",
+     54.5
+    ],
+    [
+     "target",
+     "Menyelesaikan<br>masalah",
+     55.8
+    ],
+    [
+     "shield",
+     "Tahu kapan AI<br>bisa diandalkan",
+     57.3
+    ]
+   ]
+  }
+ ]
+}

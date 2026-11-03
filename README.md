@@ -33,6 +33,28 @@ Setiap video masuk satu rubrik, dengan badge di hook, formula naskah, dan CTA ma
 python3 $S init decode-01-admin-fotokopi --rubrik decode --voice ari-santai
 ```
 
+## Tipe konten: Talking-head + B-roll (footage sendiri)
+Punya rekaman diri bicara ke kamera? Skill ini juga bisa mengeditnya dengan gaya video edukasi YouTube: footage kamu jadi A-roll, ditambah foto B-roll (Pexels), motion grafik, dan monolog asli, tanpa TTS.
+- Frasa kunci diketik huruf demi huruf (sans tebal + *serif italic*), tanpa subtitle karaoke
+- Jump-cut wide ↔ close-up, grade gelap moody, transisi light-leak
+- Kartu judul hitam + coretan merah, judul glitch RGB
+- Diagram arang ber-scanline dengan thumbnail neon hijau, garis panah yang tergambar, tangga langkah
+- SFX pelan (±5/menit) + versi tanpa SFX
+
+Panduan: [`references/talking-head-broll.md`](references/talking-head-broll.md) · Contoh: [`examples/nocap-skill-ai-talkinghead/`](examples/nocap-skill-ai-talkinghead/)
+```bash
+A=~/.claude/skills/motion-reels-agj/scripts/aroll.py
+pip install faster-whisper numpy          # + node untuk npx hyperframes
+python3 $A init  nocap-02-x --footage rekaman.mov --rubrik nocap
+python3 $A prep  nocap-02-x                # HDR iPhone → SDR, grade
+python3 $A words nocap-02-x                # transkrip per kata → production/words.txt
+# isi production/edit-plan.md + edit.json (agent yang mengerjakan)
+python3 $A stock nocap-02-x                # unduh & grade foto Pexels
+python3 $A build nocap-02-x && python3 $A snap nocap-02-x --at 2,8,25,55
+python3 $A render nocap-02-x               # → nocap-02-x/nocap-02-x.mp4
+python3 $A mix nocap-02-x                  # versi tanpa SFX
+```
+
 ## Fase 10 — Social Publishing
 Setelah QC video lulus, caption TikTok, Instagram Reels, dan Facebook Reels dibuat oleh skill terpisah [**social-caption-publish**](https://github.com/arigunawanj/social-caption-publish) (netral brand & bahasa). Pasang juga skill itu:
 ```bash
@@ -82,6 +104,9 @@ AGENTS.md                adapter Codex
 templates/               creative-brief, concept, storyboard, visual-direction, qc-checklist, project/
 engine/                  engine.js (kamera, easing, caption, SFX, hook QC) + base.css
 scripts/mr.py            CLI produksi & validasi
-references/              naskah-genz.md, motion-kamera.md, engines.md (GSAP/Three.js/Canvas)
+scripts/aroll.py         CLI tipe talking-head + B-roll (HyperFrames)
+references/              naskah-genz.md, motion-kamera.md, engines.md, rubrik-konten.md, talking-head-broll.md
 examples/website-lemot/  contoh 8 scene lengkap
+examples/nocap-skill-ai-talkinghead/  contoh edit talking-head + B-roll (edit.json)
+templates/aroll/         edit.json, creative-brief, edit-plan untuk tipe talking-head
 ```
